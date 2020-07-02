@@ -419,10 +419,10 @@ lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1279039707&web_id=1279039707')
     var OriginTitile = document.title, titleTime;
     document.addEventListener('visibilitychange', function() {
         if (document.hidden) {
-            document.title = 'Lawson's Blog';
+            document.title = `Lawson's Blog`;
             clearTimeout(titleTime);
         } else {
-            document.title = 'Lawson's Blog';
+            document.title = `Lawson's Blog`;
             titleTime = setTimeout(function() {
                 document.title = OriginTitile;
             },2000);
