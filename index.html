@@ -17,8 +17,6 @@
     <title>Lawson&#39;s Blog | 尝尽人间百味，方知人间冷暖。</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-    <meta name="theme-color" content="#3F51B5">
-    
     
     <meta name="keywords" content="劳生穿，个人博客，前端博客，前端开发，hexo，JavaScript，Chuan">
     <meta name="description" content="劳生穿的博客。做人最重要的是开心。">
@@ -34,8 +32,8 @@
     
         <link rel="alternate" type="application/atom+xml" title="Lawson&#39;s Blog" href="/atom.xml">
     
-    <link rel="shortcut icon" href="/favicon.ico">
-    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <link rel="shortcut icon" href="/">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
     <script>window.lazyScripts=[]</script>
 
     <!-- custom head -->
@@ -51,61 +49,19 @@
     <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
         <i class="icon icon-lg icon-close"></i>
     </a>
-    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+    <div class="brand-wrap" style="background-image:url(/)">
       <div class="brand">
         <a href="/" class="avatar waves-effect waves-circle waves-light">
-          <img src="/img/avatar.jpg">
+          <img src="/">
         </a>
         <hgroup class="introduce">
           <h5 class="nickname">Lawson</h5>
-          <a href="mailto:2292100085@qq.com" title="2292100085@qq.com" class="mail">2292100085@qq.com</a>
+          <a href="mailto:undefined" class="mail">
         </hgroup>
       </div>
     </div>
     <div class="scroll-wrap flex-col">
       <ul class="nav">
-        
-            <li class="waves-block waves-effect active">
-              <a href="/"  >
-                <i class="icon icon-lg icon-home"></i>
-                主页
-              </a>
-            </li>
-        
-            <li class="waves-block waves-effect">
-              <a href="/archives"  >
-                <i class="icon icon-lg icon-archives"></i>
-                归档
-              </a>
-            </li>
-        
-            <li class="waves-block waves-effect">
-              <a href="/tags"  >
-                <i class="icon icon-lg icon-tags"></i>
-                标签
-              </a>
-            </li>
-        
-            <li class="waves-block waves-effect">
-              <a href="https://github.com/ChuanV" target="_blank" >
-                <i class="icon icon-lg icon-github"></i>
-                Github
-              </a>
-            </li>
-        
-            <li class="waves-block waves-effect">
-              <a href="https://blog.csdn.net/qq_42335214" target="_blank" >
-                <i class="icon icon-lg icon-send"></i>
-                CSDN
-              </a>
-            </li>
-        
-            <li class="waves-block waves-effect">
-              <a href="/about"  >
-                <i class="icon icon-lg icon-exclamation-circle"></i>
-                关于
-              </a>
-            </li>
         
       </ul>
     </div>
@@ -120,20 +76,6 @@
         </a>
         <div class="flex-col header-title ellipsis">Lawson&#39;s Blog</div>
         
-        <div class="search-wrap" id="search-wrap">
-            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
-                <i class="icon icon-lg icon-chevron-left"></i>
-            </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
-            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
-                <i class="icon icon-lg icon-search"></i>
-            </a>
-        </div>
-        
-        
-        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
-            <i class="icon icon-lg icon-share-alt"></i>
-        </a>
         
     </div>
 </header>
@@ -185,10 +127,7 @@
 
     
         进程与线程
-进程是资源分配的最小单位,线程是程序执行的最小单位。
-同一进程下的线程共享全局变量、静态变量等数据，而进程之间的通信需要以通信的方式（IPC)进行。
-进程有自己的独立地址空间，每启动一个进程，系统就会为它分配地址空间，建立数据表来维护代码段、堆栈段和数据段，而进程共享进程中的数据的，使用相同的地址空间；
-多进程程序更健壮，多线程程序只要有一个线程死掉，整个进程也死掉了，而一个进程...
+进程是资源分配的最小单位,线程是程序执行的...
     
 
         <a href="/2020/07/08/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%9E%B6%E6%9E%84%E4%BD%A0%E4%BA%86%E8%A7%A3%E5%A4%9A%E5%B0%91/" class="post-more waves-effect waves-button">
@@ -233,8 +172,7 @@
     <div class="post-content" id="post-content" itemprop="postContent">
 
     
-        斐波那契数列在算法题中比较经典，故出此文以此铭记。题目：大家都知道斐波那契数列，现在要求输入一个整数n，请你输出斐波那契数列的第n项（从0开始，第0项为0，第1项是1）。n&lt;=39
-暴力递归实现1234function Fibonacci(n)&#123;	if(n == 0 || n == 1) return n	return Fibonacci(n-1) + Fibonacci(n...
+        斐波那契数列在算法题中比较经典，故出此文以此铭记。题目...
     
 
         <a href="/2020/07/07/%E7%BB%8F%E5%85%B8%E7%AE%97%E6%B3%95%E4%BB%A5%E5%8F%8A%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="post-more waves-effect waves-button">
@@ -279,8 +217,7 @@
     <div class="post-content" id="post-content" itemprop="postContent">
 
     
-        这次利用canvas主要是对图片进行剪切，再对要修改图片的部分用html显示，然后通过html2canvas.js转化为图片。这个方法可以对图片进行PS，不过这种方法有局限，需要定制以及移动端适配。
-利用canvas的API进行剪切注意：Canvas 的默认大小为300像素×150像素（宽×高，像素的单位是px）。但是，可以使用HTML的高度和宽度属性来自定义Canvas 的尺寸。也就是说通...
+        这次利用canvas主要是对图片进行剪切，再对要修改图...
     
 
         <a href="/2020/07/02/canvas%E8%B8%A9%E5%9D%91%E6%97%A5%E8%AE%B0/" class="post-more waves-effect waves-button">
@@ -325,9 +262,7 @@
     <div class="post-content" id="post-content" itemprop="postContent">
 
     
-        Javascript API实现排序12let arr = [72, 45, 62, 12, 23, 67, 80, 56, 90, 6, 9];arr.sort((a,b)=&gt;a-b);
-冒泡排序基本思路：每次执行循环就把一个最大的数放到最后，就像气泡一样一个一个的冒；第一个循环遍历数组所有元素，第二个循环遍历是找出最大数值然后放在最后，时间复杂度为O(n2)。
-1234567891...
+        Javascript API实现排序12let arr...
     
 
         <a href="/2020/07/02/%E8%81%8A%E8%81%8A%E5%87%A0%E7%A7%8D%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/" class="post-more waves-effect waves-button">
@@ -372,9 +307,7 @@
     <div class="post-content" id="post-content" itemprop="postContent">
 
     
-        当我们要在一个输入框中监听回车事件时要绑定keyup事件；keydown当键盘被按下时会触发；keyup当键盘松开时触发；
-1&lt;input type="text" value="" id="search_input"/&gt;
-原生JavaScript实现;1234567document.getElementById('search_input').onkeyup = function...
+        当我们要在一个输入框中监听回车事件时要绑定keyup事...
     
 
         <a href="/2020/06/30/Vue%E7%9B%91%E5%90%AC%E5%9B%9E%E8%BD%A6%E4%BA%8B%E4%BB%B6keyup/" class="post-more waves-effect waves-button">
@@ -401,15 +334,6 @@
         <footer class="footer">
     <div class="top">
         
-<p>
-    <span id="busuanzi_container_site_uv" style='display:none'>
-        站点总访客数：<span id="busuanzi_value_site_uv"></span>
-    </span>
-    <span id="busuanzi_container_site_pv" style='display:none'>
-        站点总访问量：<span id="busuanzi_value_site_pv"></span>
-    </span>
-</p>
-
 
         <p>
             
@@ -433,108 +357,21 @@
 <a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
 
 
-
-<div class="global-share" id="globalShare">
-    <ul class="reset share-icons">
-      <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://lawsan.xyz/&title=Lawson's Blog&pic=http://lawsan.xyz/img/avatar.jpg" data-title="微博">
-          <i class="icon icon-weibo"></i>
-        </a>
-      </li>
-      <li>
-        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
-          <i class="icon icon-weixin"></i>
-        </a>
-      </li>
-      <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://lawsan.xyz/&title=Lawson's Blog&source=劳生穿的博客。做人最重要的是开心。" data-title=" QQ">
-          <i class="icon icon-qq"></i>
-        </a>
-      </li>
-      <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://lawsan.xyz/" data-title=" Facebook">
-          <i class="icon icon-facebook"></i>
-        </a>
-      </li>
-      <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=Lawson's Blog&url=http://lawsan.xyz/&via=http://lawsan.xyz" data-title=" Twitter">
-          <i class="icon icon-twitter"></i>
-        </a>
-      </li>
-      <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://lawsan.xyz/" data-title=" Google+">
-          <i class="icon icon-google-plus"></i>
-        </a>
-      </li>
-    </ul>
- </div>
-
-
-<div class="page-modal wx-share" id="wxShare">
-    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJYAAACWCAAAAAAZai4+AAABWElEQVR42u3awQ7CIBBF0f7/T9fElS7A+4ZWI3NZmUrwuGAoD44Dt/PZRp9f27z/xU2WrI1Y57SNhh49IePM+8iS1Zm1UhTmaFIsZMmSxVkEOioZsmTJurZAkEF/ULdkydqCxV92OetL7/KyZG3BWg+SakXh9nxLlqw/YZ0LrbbFRSPLktWMRZbh+fzlffhWVpasbqza0Pxn0gX7rW7JktWYxbevtUgXlRtZsmSFx5kpGr0WyJLVkrUeAPFCg6CyZDVjpZlqupzfuM+WJWtT1sqlutohaPGgRZasTVlpIUi3prUQSpasniwygXkkFAS4oyeyZLVhFa8ChFFRHBPLktWMld6L42ET759ed5Ala1dW7bJd+i15PsybZclqw1qf5LXl9kOBkCVLVinGTeOn4d+QJUsWWIDTnvERiyxZLVlpGEQuFvCjF1myZNWCpPSKD9ncypLVkvUA51icpH6u/CsAAAAASUVORK5CYII=" alt="微信分享二维码">
-</div>
-
-
-
-
     <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
 <script>
-var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+var BLOG = { ROOT: '/', SHARE: , REWARD: false };
 
-
-lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1279039707&web_id=1279039707')
 
 </script>
 
-<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
-
-
-<div class="search-panel" id="search-panel">
-    <ul class="search-result" id="search-result"></ul>
-</div>
-<template id="search-tpl">
-<li class="item">
-    <a href="{path}" class="waves-block waves-effect">
-        <div class="title ellipsis" title="{title}">{title}</div>
-        <div class="flex-row flex-middle">
-            <div class="tags ellipsis">
-                {tags}
-            </div>
-            <time class="flex-col time">{date}</time>
-        </div>
-    </a>
-</li>
-</template>
-
-<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+<script src="/js/main.min.js?v=1.7.2"></script>
 
 
 
 
 
 
-<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
-
-
-<script>
-(function() {
-    var OriginTitile = document.title, titleTime;
-    document.addEventListener('visibilitychange', function() {
-        if (document.hidden) {
-            document.title = 'Lawson's Blog';
-            clearTimeout(titleTime);
-        } else {
-            document.title = 'Lawson's Blog';
-            titleTime = setTimeout(function() {
-                document.title = OriginTitile;
-            },2000);
-        }
-    });
-})();
-</script>
 
 
 
