@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://lawsan.xyz/"/>
-  <updated>2020-07-10T07:24:44.742Z</updated>
+  <updated>2020-07-10T09:16:10.919Z</updated>
   <id>http://lawsan.xyz/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>HTTP缓存</title>
+    <link href="http://lawsan.xyz/2020/07/10/HTTP%E7%BC%93%E5%AD%98/"/>
+    <id>http://lawsan.xyz/2020/07/10/HTTP%E7%BC%93%E5%AD%98/</id>
+    <published>2020-07-10T08:10:27.000Z</published>
+    <updated>2020-07-10T09:16:10.919Z</updated>
+    
+    <content type="html"><![CDATA[<p>只有不断的学习，才会发现自己是多么无知。</p><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="https://happychuan-pic.oss-cn-shenzhen.aliyuncs.com/emotion/%E5%93%AD%E7%9A%84%E5%BE%88%E5%A4%A7%E5%A3%B0.jpg" alt="" title="">                </div>                <div class="image-caption"></div>            </figure><p>不过如果站在巨人的肩膀上的话，我就比别人看的更高更远。今天就来谈谈HTTP缓存机制。</p><h3 id="缓存是啥？"><a href="#缓存是啥？" class="headerlink" title="缓存是啥？"></a>缓存是啥？</h3><p>在浏览一些网站的时候，你有没有发现第二次浏览的时候比一开始的快很多。其实这就是缓存的结果，把第一次加载的网络资源缓存下来，以后请求的时候不用再去服务器获取，直接在本地获取即可。<br>这样可以加快资源获取速度，提升用户体验，减少网络传输，缓解服务端的压力，可谓是一石多鸟啊。</p><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="https://happychuan-pic.oss-cn-shenzhen.aliyuncs.com/emotion/%E5%A6%99.jpg" alt="" title="">                </div>                <div class="image-caption"></div>            </figure><p>HTTP 缓存分为 2 种，一种是强缓存，另一种是协商缓存。我们来看一个缓存的流程图</p><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="https://happychuan-pic.oss-cn-shenzhen.aliyuncs.com/2020/7.10/%E7%BC%93%E5%AD%98%E6%95%B4%E4%BD%93%E6%B5%81%E7%A8%8B%E5%9B%BE.jpg" alt="" title="">                </div>                <div class="image-caption"></div>            </figure><p>每次浏览器发起GET请求(POST请求不能缓存)都会判断是否有缓存，首先判断的是强缓存，有则返回资源给浏览器渲染；否则判断是否有协商缓存，有返回资源给浏览器渲染，否则向服务器请求资源。</p><h3 id="强缓存"><a href="#强缓存" class="headerlink" title="强缓存"></a>强缓存</h3><p>当有强缓存在时不需要发送请求到服务端，直接读取浏览器本地缓存，在 Chrome 的 Network 中显示的 HTTP 状态码是 200 。<br>强缓存又分为 Disk Cache (存放在硬盘中)和 Memory Cache (存放在内存中)，存放的位置是由浏览器控制的。是否强缓存由 <code>Expires</code>、<code>Cache-Control</code> 和 <code>Pragma</code> 3 个 Header 属性共同来控制。<br>优先级：<code>Pragma</code> &gt; <code>Cache-Control</code> &gt; <code>Expires</code>;</p><h4 id="Expires"><a href="#Expires" class="headerlink" title="Expires"></a>Expires</h4><p>Expires 的值是一个 HTTP 日期，在浏览器发起请求时，会根据系统时间和 Expires 的值进行比较，如果系统时间超过了 Expires 的值，缓存失效。<br>Expires有一个很大的弊端，就是它返回的是服务器的时间，但判断的时候用的却是客户端的时间，这就导致Expires很被动，因为用户有可能改变客户端的时间，导致缓存时间判断出错，Expires是HTTP1.0的产物，现在大多数使用Cache-Control替代。</p><h4 id="Cache-Control"><a href="#Cache-Control" class="headerlink" title="Cache-Control"></a>Cache-Control</h4><p>Cache-Control 是 HTTP/1.1 中新增的属性，在请求头和响应头中都可以使用，常用的属性值如有：</p><ul><li><code>max-age</code>：单位是秒，缓存时间计算的方式是距离发起的时间的秒数，超过间隔的秒数缓存失效</li><li><code>no-cache</code>：不使用强缓存，需要与服务器验证缓存是否可用</li><li><code>no-store</code>：禁止使用缓存（包括协商缓存），每次都向服务器请求最新的资源</li><li><code>private</code>：专用于个人的缓存，中间代理、CDN 等不能缓存此响应</li><li><code>public</code>：响应可以被中间代理、CDN 等缓存</li><li><code>must-revalidate</code>：在缓存过期前可以使用，过期后必须向服务器验证<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Cache-Control: max-age&#x3D;100, must-revalidate, public</span><br></pre></td></tr></table></figure>上面指令的意思是缓存的有效时间为100秒，之后访问需要向源服务器发送请求验证，此缓存可被代理服务器和客户端缓存。</li></ul><h5 id="Pragma"><a href="#Pragma" class="headerlink" title="Pragma"></a>Pragma</h5><p>Pragma 只有一个属性值，就是 no-cache ，效果和 Cache-Control 中的 no-cache 一致，不使用强缓存，需要与服务器验证缓存是否可用；<br>当 Pragma 和 Cache-Control 同时存在的时候，Pragma 的优先级高于 Cache-Control。<br>Pragma属于通用首部字段，在客户端上使用时，常规要求我们往html上加上上面这段meta元标签。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta http-equiv&#x3D;&quot;Pragma&quot; content&#x3D;&quot;no-cache&quot;&gt;</span><br></pre></td></tr></table></figure><h3 id="协商缓存"><a href="#协商缓存" class="headerlink" title="协商缓存"></a>协商缓存</h3><p>当浏览器的强缓存失效的时候或者请求头中设置了不走强缓存，并且在请求头中设置了If-Modified-Since 或者 If-None-Match 的时候，会将这两个属性值到服务端去验证是否命中协商缓存，如果命中了协商缓存，会返回 304 状态，加载浏览器缓存，并且响应头会设置 Last-Modified 或者 ETag 属性。</p><h5 id="Last-Modified-If-Modified-Since"><a href="#Last-Modified-If-Modified-Since" class="headerlink" title="Last-Modified/If-Modified-Since"></a>Last-Modified/If-Modified-Since</h5><p>在浏览器第一次请求某一个URL时，服务器端的返回状态码会是200，响应的实体内容是客户端请求的资源，同时有一个Last-Modified的属性标记此文件在服务器端最后被修改的时间。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Last-Modified : Fri , 11 May 2019 18:53:33 GMT</span><br></pre></td></tr></table></figure><p>当浏览器第二次请求这个URL的时候，根据HTTP协议规定，浏览器会把第一次Last-Modified的值存储在If-Modified-Since里面发送给服务端来验证资源有没有修改。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">If-Modified-Since : Fri , 11 May 2019 18:53:33 GMT</span><br></pre></td></tr></table></figure><p>服务端通过If-Modified-Since字段来判断在这两次访问期间资源有没有被修改过，从而决定是否返回完整的资源。如果有修改正常返回资源，状态码200，如果没有修改只返回响应头，状态码304，告知浏览器资源的本地缓存还可用。</p><h4 id="ETag-If-None-Match"><a href="#ETag-If-None-Match" class="headerlink" title="ETag/If-None-Match"></a>ETag/If-None-Match</h4><p>代表的是一个资源的标识符，当服务端的文件变化的时候，它的 hash码会随之改变，通过请求头中的 If-None-Match 和当前文件的 hash 值进行比较，如果相等则表示命中协商缓存。ETag 又有强弱校验之分，如果 hash 码是以 “W/“ 开头的一串字符串，说明此时协商缓存的校验是弱校验的，只有服务器上的文件差异（根据 ETag 计算方式来决定）达到能够触发 hash 值后缀变化的时候，才会真正地请求资源，否则返回 304 并加载浏览器缓存。<br><strong>If-None-Match和If-Modified-Since同时存在的时候If-None-Match优先级更高</strong>。<br>ETag/If-None-Match 的出现主要解决了 Last-Modified/If-Modified-Since 所解决不了的问题：<br>如果文件的修改频率在秒级以下，Last-Modified/If-Modified-Since 会错误地返回 304<br>如果文件被修改了，但是内容没有任何变化的时候，Last-Modified/If-Modified-Since 会错误地返回 304<br>好了，HTTP缓存就说到这了，虽然还有很多字段没说，比如 <code>Vary</code>、<code>Date</code>、<code>Age</code></p><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="https://happychuan-pic.oss-cn-shenzhen.aliyuncs.com/emotion/%E7%A7%83%E5%A4%B4%E5%BF%AB%E4%B9%90.jpg" alt="" title="">                </div>                <div class="image-caption"></div>            </figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;只有不断的学习，才会发现自己是多么无知。&lt;/p&gt;
+&lt;figure class=&quot;image-bubble&quot;&gt;
+                &lt;div class=&quot;img-lightbox&quot;&gt;
+                    &lt;div class=&quot;overlay
+      
+    
+    </summary>
+    
+    
+    
+      <category term="HTTP" scheme="http://lawsan.xyz/tags/HTTP/"/>
+    
+  </entry>
   
   <entry>
     <title>浏览器渲染原理你了解多少</title>

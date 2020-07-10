@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>HTTP缓存 | Lawson&#39;s Blog | 尝尽人间百味，方知人间冷暖。</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="HTTP">
+    <meta name="description" content="只有不断的学习，才会发现自己是多么无知。                                                                                                            不过如果站在巨人的肩膀上的话，我就比别人看的更高更远。今天就来谈谈HTTP缓存机制。 缓存是啥？在浏览一些网站的时候，你有没有发现第二次浏览的时">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTTP缓存">
+<meta property="og:url" content="http://lawsan.xyz/2020/07/10/HTTP%E7%BC%93%E5%AD%98/index.html">
+<meta property="og:site_name" content="Lawson&#39;s Blog">
+<meta property="og:description" content="只有不断的学习，才会发现自己是多么无知。                                                                                                            不过如果站在巨人的肩膀上的话，我就比别人看的更高更远。今天就来谈谈HTTP缓存机制。 缓存是啥？在浏览一些网站的时候，你有没有发现第二次浏览的时">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://happychuan-pic.oss-cn-shenzhen.aliyuncs.com/emotion/%E5%93%AD%E7%9A%84%E5%BE%88%E5%A4%A7%E5%A3%B0.jpg">
+<meta property="og:image" content="https://happychuan-pic.oss-cn-shenzhen.aliyuncs.com/emotion/%E5%A6%99.jpg">
+<meta property="og:image" content="https://happychuan-pic.oss-cn-shenzhen.aliyuncs.com/2020/7.10/%E7%BC%93%E5%AD%98%E6%95%B4%E4%BD%93%E6%B5%81%E7%A8%8B%E5%9B%BE.jpg">
+<meta property="og:image" content="https://happychuan-pic.oss-cn-shenzhen.aliyuncs.com/emotion/%E7%A7%83%E5%A4%B4%E5%BF%AB%E4%B9%90.jpg">
+<meta property="article:published_time" content="2020-07-10T08:10:27.000Z">
+<meta property="article:modified_time" content="2020-07-10T09:16:10.919Z">
+<meta property="article:author" content="Lawson">
+<meta property="article:tag" content="HTTP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://happychuan-pic.oss-cn-shenzhen.aliyuncs.com/emotion/%E5%93%AD%E7%9A%84%E5%BE%88%E5%A4%A7%E5%A3%B0.jpg">
+    
+        <link rel="alternate" type="application/atom+xml" title="Lawson&#39;s Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="https://happychuan-pic.oss-cn-shenzhen.aliyuncs.com/assets/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(https://happychuan-pic.oss-cn-shenzhen.aliyuncs.com/assets/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="https://happychuan-pic.oss-cn-shenzhen.aliyuncs.com/assets/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Lawson</h5>
+          <a href="mailto:2292100085@qq.com" title="2292100085@qq.com" class="mail">2292100085@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/ChuanV" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://blog.csdn.net/qq_42335214" target="_blank" >
+                <i class="icon icon-lg icon-send"></i>
+                CSDN
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-exclamation-circle"></i>
+                关于
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">HTTP缓存</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">HTTP缓存</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2020-07-10T08:10:27.000Z" itemprop="datePublished" class="page-time">
+  2020-07-10
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#缓存是啥？"><span class="post-toc-number">1.</span> <span class="post-toc-text">缓存是啥？</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#强缓存"><span class="post-toc-number">2.</span> <span class="post-toc-text">强缓存</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Expires"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">Expires</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Cache-Control"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">Cache-Control</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#Pragma"><span class="post-toc-number">2.2.1.</span> <span class="post-toc-text">Pragma</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#协商缓存"><span class="post-toc-number">3.</span> <span class="post-toc-text">协商缓存</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#Last-Modified-If-Modified-Since"><span class="post-toc-number">3.0.1.</span> <span class="post-toc-text">Last-Modified&#x2F;If-Modified-Since</span></a></li></ol></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#ETag-If-None-Match"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">ETag&#x2F;If-None-Match</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-HTTP缓存"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">HTTP缓存</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2020-07-10 16:10:27" datetime="2020-07-10T08:10:27.000Z"  itemprop="datePublished">2020-07-10</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>只有不断的学习，才会发现自己是多么无知。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://happychuan-pic.oss-cn-shenzhen.aliyuncs.com/emotion/%E5%93%AD%E7%9A%84%E5%BE%88%E5%A4%A7%E5%A3%B0.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>不过如果站在巨人的肩膀上的话，我就比别人看的更高更远。今天就来谈谈HTTP缓存机制。</p>
+<h3 id="缓存是啥？"><a href="#缓存是啥？" class="headerlink" title="缓存是啥？"></a>缓存是啥？</h3><p>在浏览一些网站的时候，你有没有发现第二次浏览的时候比一开始的快很多。其实这就是缓存的结果，把第一次加载的网络资源缓存下来，以后请求的时候不用再去服务器获取，直接在本地获取即可。<br>这样可以加快资源获取速度，提升用户体验，减少网络传输，缓解服务端的压力，可谓是一石多鸟啊。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://happychuan-pic.oss-cn-shenzhen.aliyuncs.com/emotion/%E5%A6%99.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>HTTP 缓存分为 2 种，一种是强缓存，另一种是协商缓存。我们来看一个缓存的流程图</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://happychuan-pic.oss-cn-shenzhen.aliyuncs.com/2020/7.10/%E7%BC%93%E5%AD%98%E6%95%B4%E4%BD%93%E6%B5%81%E7%A8%8B%E5%9B%BE.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>每次浏览器发起GET请求(POST请求不能缓存)都会判断是否有缓存，首先判断的是强缓存，有则返回资源给浏览器渲染；否则判断是否有协商缓存，有返回资源给浏览器渲染，否则向服务器请求资源。</p>
+<h3 id="强缓存"><a href="#强缓存" class="headerlink" title="强缓存"></a>强缓存</h3><p>当有强缓存在时不需要发送请求到服务端，直接读取浏览器本地缓存，在 Chrome 的 Network 中显示的 HTTP 状态码是 200 。<br>强缓存又分为 Disk Cache (存放在硬盘中)和 Memory Cache (存放在内存中)，存放的位置是由浏览器控制的。是否强缓存由 <code>Expires</code>、<code>Cache-Control</code> 和 <code>Pragma</code> 3 个 Header 属性共同来控制。<br>优先级：<code>Pragma</code> &gt; <code>Cache-Control</code> &gt; <code>Expires</code>;</p>
+<h4 id="Expires"><a href="#Expires" class="headerlink" title="Expires"></a>Expires</h4><p>Expires 的值是一个 HTTP 日期，在浏览器发起请求时，会根据系统时间和 Expires 的值进行比较，如果系统时间超过了 Expires 的值，缓存失效。<br>Expires有一个很大的弊端，就是它返回的是服务器的时间，但判断的时候用的却是客户端的时间，这就导致Expires很被动，因为用户有可能改变客户端的时间，导致缓存时间判断出错，Expires是HTTP1.0的产物，现在大多数使用Cache-Control替代。</p>
+<h4 id="Cache-Control"><a href="#Cache-Control" class="headerlink" title="Cache-Control"></a>Cache-Control</h4><p>Cache-Control 是 HTTP/1.1 中新增的属性，在请求头和响应头中都可以使用，常用的属性值如有：</p>
+<ul>
+<li><code>max-age</code>：单位是秒，缓存时间计算的方式是距离发起的时间的秒数，超过间隔的秒数缓存失效</li>
+<li><code>no-cache</code>：不使用强缓存，需要与服务器验证缓存是否可用</li>
+<li><code>no-store</code>：禁止使用缓存（包括协商缓存），每次都向服务器请求最新的资源</li>
+<li><code>private</code>：专用于个人的缓存，中间代理、CDN 等不能缓存此响应</li>
+<li><code>public</code>：响应可以被中间代理、CDN 等缓存</li>
+<li><code>must-revalidate</code>：在缓存过期前可以使用，过期后必须向服务器验证<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Cache-Control: max-age&#x3D;100, must-revalidate, public</span><br></pre></td></tr></table></figure>
+上面指令的意思是缓存的有效时间为100秒，之后访问需要向源服务器发送请求验证，此缓存可被代理服务器和客户端缓存。</li>
+</ul>
+<h5 id="Pragma"><a href="#Pragma" class="headerlink" title="Pragma"></a>Pragma</h5><p>Pragma 只有一个属性值，就是 no-cache ，效果和 Cache-Control 中的 no-cache 一致，不使用强缓存，需要与服务器验证缓存是否可用；<br>当 Pragma 和 Cache-Control 同时存在的时候，Pragma 的优先级高于 Cache-Control。<br>Pragma属于通用首部字段，在客户端上使用时，常规要求我们往html上加上上面这段meta元标签。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta http-equiv&#x3D;&quot;Pragma&quot; content&#x3D;&quot;no-cache&quot;&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="协商缓存"><a href="#协商缓存" class="headerlink" title="协商缓存"></a>协商缓存</h3><p>当浏览器的强缓存失效的时候或者请求头中设置了不走强缓存，并且在请求头中设置了If-Modified-Since 或者 If-None-Match 的时候，会将这两个属性值到服务端去验证是否命中协商缓存，如果命中了协商缓存，会返回 304 状态，加载浏览器缓存，并且响应头会设置 Last-Modified 或者 ETag 属性。</p>
+<h5 id="Last-Modified-If-Modified-Since"><a href="#Last-Modified-If-Modified-Since" class="headerlink" title="Last-Modified/If-Modified-Since"></a>Last-Modified/If-Modified-Since</h5><p>在浏览器第一次请求某一个URL时，服务器端的返回状态码会是200，响应的实体内容是客户端请求的资源，同时有一个Last-Modified的属性标记此文件在服务器端最后被修改的时间。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Last-Modified : Fri , 11 May 2019 18:53:33 GMT</span><br></pre></td></tr></table></figure>
+<p>当浏览器第二次请求这个URL的时候，根据HTTP协议规定，浏览器会把第一次Last-Modified的值存储在If-Modified-Since里面发送给服务端来验证资源有没有修改。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">If-Modified-Since : Fri , 11 May 2019 18:53:33 GMT</span><br></pre></td></tr></table></figure>
+<p>服务端通过If-Modified-Since字段来判断在这两次访问期间资源有没有被修改过，从而决定是否返回完整的资源。如果有修改正常返回资源，状态码200，如果没有修改只返回响应头，状态码304，告知浏览器资源的本地缓存还可用。</p>
+<h4 id="ETag-If-None-Match"><a href="#ETag-If-None-Match" class="headerlink" title="ETag/If-None-Match"></a>ETag/If-None-Match</h4><p>代表的是一个资源的标识符，当服务端的文件变化的时候，它的 hash码会随之改变，通过请求头中的 If-None-Match 和当前文件的 hash 值进行比较，如果相等则表示命中协商缓存。ETag 又有强弱校验之分，如果 hash 码是以 “W/“ 开头的一串字符串，说明此时协商缓存的校验是弱校验的，只有服务器上的文件差异（根据 ETag 计算方式来决定）达到能够触发 hash 值后缀变化的时候，才会真正地请求资源，否则返回 304 并加载浏览器缓存。<br><strong>If-None-Match和If-Modified-Since同时存在的时候If-None-Match优先级更高</strong>。<br>ETag/If-None-Match 的出现主要解决了 Last-Modified/If-Modified-Since 所解决不了的问题：<br>如果文件的修改频率在秒级以下，Last-Modified/If-Modified-Since 会错误地返回 304<br>如果文件被修改了，但是内容没有任何变化的时候，Last-Modified/If-Modified-Since 会错误地返回 304<br>好了，HTTP缓存就说到这了，虽然还有很多字段没说，比如 <code>Vary</code>、<code>Date</code>、<code>Age</code></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://happychuan-pic.oss-cn-shenzhen.aliyuncs.com/emotion/%E7%A7%83%E5%A4%B4%E5%BF%AB%E4%B9%90.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2020-07-10T09:16:10.919Z" itemprop="dateUpdated">2020-07-10 17:16:10</time>
+</span><br>
+
+
+        
+        版权声明：本文为博主原创文章，遵循<a href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank" >CC 4.0 BY-SA</a>版权协议，转载请附上原文出处链接。
+        
+    </div>
+    
+    <footer>
+        <a href="http://lawsan.xyz">
+            <img src="https://happychuan-pic.oss-cn-shenzhen.aliyuncs.com/assets/avatar.jpg" alt="Lawson">
+            Lawson
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTTP/" rel="tag">HTTP</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://lawsan.xyz/2020/07/10/HTTP%E7%BC%93%E5%AD%98/&title=《HTTP缓存》 — Lawson's Blog&pic=https://happychuan-pic.oss-cn-shenzhen.aliyuncs.com/assets/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://lawsan.xyz/2020/07/10/HTTP%E7%BC%93%E5%AD%98/&title=《HTTP缓存》 — Lawson's Blog&source=劳生穿的博客。做人最重要的是开心。" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://lawsan.xyz/2020/07/10/HTTP%E7%BC%93%E5%AD%98/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《HTTP缓存》 — Lawson's Blog&url=http://lawsan.xyz/2020/07/10/HTTP%E7%BC%93%E5%AD%98/&via=http://lawsan.xyz" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://lawsan.xyz/2020/07/10/HTTP%E7%BC%93%E5%AD%98/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2020/07/10/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%B8%B2%E6%9F%93%E5%8E%9F%E7%90%86%E4%BD%A0%E4%BA%86%E8%A7%A3%E5%A4%9A%E5%B0%91/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">浏览器渲染原理你了解多少</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+        var id = location.pathname
+        if (location.pathname.length > 50) {
+          id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
+        }
+        const gitalk = new Gitalk({
+          clientID: '60476e5f2147b66e183a',
+          clientSecret: '62d6d1e9df0f3f402e64a84793b11b781331015e',
+          repo: 'blog_comments',
+          owner: 'ChuanV',
+          admin: ['ChuanV'],
+          id: id,      // Ensure uniqueness and length less than 50
+          title: document.title.split('|')[0],
+          distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="https://happychuan-pic.oss-cn-shenzhen.aliyuncs.com/assets/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="https://happychuan-pic.oss-cn-shenzhen.aliyuncs.com/assets/wechat.jpg" data-alipay="https://happychuan-pic.oss-cn-shenzhen.aliyuncs.com/assets/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Lawson &copy; 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://lawsan.xyz/2020/07/10/HTTP%E7%BC%93%E5%AD%98/&title=《HTTP缓存》 — Lawson's Blog&pic=https://happychuan-pic.oss-cn-shenzhen.aliyuncs.com/assets/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://lawsan.xyz/2020/07/10/HTTP%E7%BC%93%E5%AD%98/&title=《HTTP缓存》 — Lawson's Blog&source=劳生穿的博客。做人最重要的是开心。" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://lawsan.xyz/2020/07/10/HTTP%E7%BC%93%E5%AD%98/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《HTTP缓存》 — Lawson's Blog&url=http://lawsan.xyz/2020/07/10/HTTP%E7%BC%93%E5%AD%98/&via=http://lawsan.xyz" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://lawsan.xyz/2020/07/10/HTTP%E7%BC%93%E5%AD%98/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACLElEQVR42u3ay1LjMBAFUP7/p0MVKxbY3NsyUxPpeOUKseKjRaN+fHzE1+vr+n7//ZOrb96vcPX9qxUeuDAwMN6W8bq9kqXvkS3garWrd8PAwDiHMXu5FpC8ULJ9GBgYGHmgzO/zsI6BgYHxVMBNns1XaI+kGBgYZzLaUPhA2vnogRIDA2Nvxqwx8G/u/7y/gYGB8d8zXuXVHunyMLr0VhgYGFsz2nGHWXF/PYmNwjEGBsamjLywlaSObUhdL9JhYGCcw2gfS4r4D7cn7wM3BgbGAYyVY2Ly1CxNLYp9GBgYBzDyovxTQTYP6FG4x8DA2JrRDlKsU/NiX3sYxcDA2JWRP9AOkOXTEcnhb/h/AwMDYwvGrJ3ZfpI3KfOtwcDAOI2RFLzapHR2WGyHNjAwME5g1M3Ch1LW2QAHBgbGmYxZ2tk2IJOS2Ww4AwMD4zTGertxfYSiDdb1PmFgYLwhI1m6Lavl5fu8DPfLkRQDA2NrxmzEIU9081Zom0j/0tnAwMDYiJH8TH6IbJ/Nd7o422JgYGzKaBPLfGCiDeUJ74ftw8DA2JqRD13lgTJpMyQJc/0UBgbGpoxZWb/9ZstoD44YGBh7M/JrdrCbBeicV5MwMDDeljELnW0wvW8ePFDUw8DAOIDxVJDNQ+dK+lr8GQMD4zDG+jhFO2BRrICBgYERh8tZI3M9hcbAwDiBMQxzoxdqGw/Rb2FgYGzNWG8MJD2HNkyvbCsGBsZGjE/XMb2LjbUorQAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1279039707&web_id=1279039707')
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = 'Lawson's Blog';
+            clearTimeout(titleTime);
+        } else {
+            document.title = 'Lawson's Blog';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
