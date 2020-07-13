@@ -24,7 +24,7 @@
     <meta name="description" content="前言计算机网络是一个开发人员的基础知识，今天我们就来聊聊HTTP的发展历史吧。影响一个网络的因素有：带宽：带宽的大小决定你网络的速率，比如100Mbps的宽带，理论上每秒下载量100Mbps&#x2F;8 &#x3D; 12.5m;上行一般都较小，大概30Mbps左右。延迟：有时候你打游戏的时候，打的正爽，然后网络延时了（460）；在浏览器中，可能是以下原因：  浏览器阻塞（HOL blocking）：浏览器会因为一">
 <meta property="og:type" content="article">
 <meta property="og:title" content="HTTP1.0、HTTP1.1与HTTP2.0有啥变化？">
-<meta property="og:url" content="http://lawsan.xyz/2020/07/13/%E5%B8%A6%E4%BD%A0%E8%AF%BB%E6%87%82HTTP%E7%9A%84%E5%8F%91%E5%B1%95%E5%8E%86%E7%A8%8B/index.html">
+<meta property="og:url" content="http://lawsan.xyz/2020/07/13/HTTP1.0%E3%80%81HTTP1.1%E4%B8%8EHTTP2.0%E6%9C%89%E5%95%A5%E5%8F%98%E5%8C%96%EF%BC%9F/index.html">
 <meta property="og:site_name" content="Lawson&#39;s Blog">
 <meta property="og:description" content="前言计算机网络是一个开发人员的基础知识，今天我们就来聊聊HTTP的发展历史吧。影响一个网络的因素有：带宽：带宽的大小决定你网络的速率，比如100Mbps的宽带，理论上每秒下载量100Mbps&#x2F;8 &#x3D; 12.5m;上行一般都较小，大概30Mbps左右。延迟：有时候你打游戏的时候，打的正爽，然后网络延时了（460）；在浏览器中，可能是以下原因：  浏览器阻塞（HOL blocking）：浏览器会因为一">
 <meta property="og:locale" content="zh_CN">
@@ -175,7 +175,7 @@
     </aside>
 
 
-<article id="post-带你读懂HTTP的发展历程"
+<article id="post-HTTP1.0、HTTP1.1与HTTP2.0有啥变化？"
   class="post-article article-type-post fade" itemprop="blogPost">
 
     <div class="post-card">
@@ -296,7 +296,7 @@ HTTP协议 ：Hyper Text Transfer Protocol（超文本传输协议）,是用于�
 <div class="page-share" id="pageShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://lawsan.xyz/2020/07/13/%E5%B8%A6%E4%BD%A0%E8%AF%BB%E6%87%82HTTP%E7%9A%84%E5%8F%91%E5%B1%95%E5%8E%86%E7%A8%8B/&title=《HTTP1.0、HTTP1.1与HTTP2.0有啥变化？》 — Lawson's Blog&pic=https://happychuan-pic.oss-cn-shenzhen.aliyuncs.com/assets/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://lawsan.xyz/2020/07/13/HTTP1.0%E3%80%81HTTP1.1%E4%B8%8EHTTP2.0%E6%9C%89%E5%95%A5%E5%8F%98%E5%8C%96%EF%BC%9F/&title=《HTTP1.0、HTTP1.1与HTTP2.0有啥变化？》 — Lawson's Blog&pic=https://happychuan-pic.oss-cn-shenzhen.aliyuncs.com/assets/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -306,22 +306,22 @@ HTTP协议 ：Hyper Text Transfer Protocol（超文本传输协议）,是用于�
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://lawsan.xyz/2020/07/13/%E5%B8%A6%E4%BD%A0%E8%AF%BB%E6%87%82HTTP%E7%9A%84%E5%8F%91%E5%B1%95%E5%8E%86%E7%A8%8B/&title=《HTTP1.0、HTTP1.1与HTTP2.0有啥变化？》 — Lawson's Blog&source=劳生穿的博客。做人最重要的是开心。" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://lawsan.xyz/2020/07/13/HTTP1.0%E3%80%81HTTP1.1%E4%B8%8EHTTP2.0%E6%9C%89%E5%95%A5%E5%8F%98%E5%8C%96%EF%BC%9F/&title=《HTTP1.0、HTTP1.1与HTTP2.0有啥变化？》 — Lawson's Blog&source=劳生穿的博客。做人最重要的是开心。" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://lawsan.xyz/2020/07/13/%E5%B8%A6%E4%BD%A0%E8%AF%BB%E6%87%82HTTP%E7%9A%84%E5%8F%91%E5%B1%95%E5%8E%86%E7%A8%8B/" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://lawsan.xyz/2020/07/13/HTTP1.0%E3%80%81HTTP1.1%E4%B8%8EHTTP2.0%E6%9C%89%E5%95%A5%E5%8F%98%E5%8C%96%EF%BC%9F/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《HTTP1.0、HTTP1.1与HTTP2.0有啥变化？》 — Lawson's Blog&url=http://lawsan.xyz/2020/07/13/%E5%B8%A6%E4%BD%A0%E8%AF%BB%E6%87%82HTTP%E7%9A%84%E5%8F%91%E5%B1%95%E5%8E%86%E7%A8%8B/&via=http://lawsan.xyz" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《HTTP1.0、HTTP1.1与HTTP2.0有啥变化？》 — Lawson's Blog&url=http://lawsan.xyz/2020/07/13/HTTP1.0%E3%80%81HTTP1.1%E4%B8%8EHTTP2.0%E6%9C%89%E5%95%A5%E5%8F%98%E5%8C%96%EF%BC%9F/&via=http://lawsan.xyz" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://lawsan.xyz/2020/07/13/%E5%B8%A6%E4%BD%A0%E8%AF%BB%E6%87%82HTTP%E7%9A%84%E5%8F%91%E5%B1%95%E5%8E%86%E7%A8%8B/" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://lawsan.xyz/2020/07/13/HTTP1.0%E3%80%81HTTP1.1%E4%B8%8EHTTP2.0%E6%9C%89%E5%95%A5%E5%8F%98%E5%8C%96%EF%BC%9F/" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -479,7 +479,7 @@ HTTP协议 ：Hyper Text Transfer Protocol（超文本传输协议）,是用于�
 <div class="global-share" id="globalShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://lawsan.xyz/2020/07/13/%E5%B8%A6%E4%BD%A0%E8%AF%BB%E6%87%82HTTP%E7%9A%84%E5%8F%91%E5%B1%95%E5%8E%86%E7%A8%8B/&title=《HTTP1.0、HTTP1.1与HTTP2.0有啥变化？》 — Lawson's Blog&pic=https://happychuan-pic.oss-cn-shenzhen.aliyuncs.com/assets/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://lawsan.xyz/2020/07/13/HTTP1.0%E3%80%81HTTP1.1%E4%B8%8EHTTP2.0%E6%9C%89%E5%95%A5%E5%8F%98%E5%8C%96%EF%BC%9F/&title=《HTTP1.0、HTTP1.1与HTTP2.0有啥变化？》 — Lawson's Blog&pic=https://happychuan-pic.oss-cn-shenzhen.aliyuncs.com/assets/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -489,22 +489,22 @@ HTTP协议 ：Hyper Text Transfer Protocol（超文本传输协议）,是用于�
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://lawsan.xyz/2020/07/13/%E5%B8%A6%E4%BD%A0%E8%AF%BB%E6%87%82HTTP%E7%9A%84%E5%8F%91%E5%B1%95%E5%8E%86%E7%A8%8B/&title=《HTTP1.0、HTTP1.1与HTTP2.0有啥变化？》 — Lawson's Blog&source=劳生穿的博客。做人最重要的是开心。" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://lawsan.xyz/2020/07/13/HTTP1.0%E3%80%81HTTP1.1%E4%B8%8EHTTP2.0%E6%9C%89%E5%95%A5%E5%8F%98%E5%8C%96%EF%BC%9F/&title=《HTTP1.0、HTTP1.1与HTTP2.0有啥变化？》 — Lawson's Blog&source=劳生穿的博客。做人最重要的是开心。" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://lawsan.xyz/2020/07/13/%E5%B8%A6%E4%BD%A0%E8%AF%BB%E6%87%82HTTP%E7%9A%84%E5%8F%91%E5%B1%95%E5%8E%86%E7%A8%8B/" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://lawsan.xyz/2020/07/13/HTTP1.0%E3%80%81HTTP1.1%E4%B8%8EHTTP2.0%E6%9C%89%E5%95%A5%E5%8F%98%E5%8C%96%EF%BC%9F/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《HTTP1.0、HTTP1.1与HTTP2.0有啥变化？》 — Lawson's Blog&url=http://lawsan.xyz/2020/07/13/%E5%B8%A6%E4%BD%A0%E8%AF%BB%E6%87%82HTTP%E7%9A%84%E5%8F%91%E5%B1%95%E5%8E%86%E7%A8%8B/&via=http://lawsan.xyz" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《HTTP1.0、HTTP1.1与HTTP2.0有啥变化？》 — Lawson's Blog&url=http://lawsan.xyz/2020/07/13/HTTP1.0%E3%80%81HTTP1.1%E4%B8%8EHTTP2.0%E6%9C%89%E5%95%A5%E5%8F%98%E5%8C%96%EF%BC%9F/&via=http://lawsan.xyz" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://lawsan.xyz/2020/07/13/%E5%B8%A6%E4%BD%A0%E8%AF%BB%E6%87%82HTTP%E7%9A%84%E5%8F%91%E5%B1%95%E5%8E%86%E7%A8%8B/" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://lawsan.xyz/2020/07/13/HTTP1.0%E3%80%81HTTP1.1%E4%B8%8EHTTP2.0%E6%9C%89%E5%95%A5%E5%8F%98%E5%8C%96%EF%BC%9F/" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -515,7 +515,7 @@ HTTP协议 ：Hyper Text Transfer Protocol（超文本传输协议）,是用于�
 <div class="page-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
-    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQ4AAAEOCAAAAABd2qZ5AAAD80lEQVR42u3aO3LCQBAFQO5/aTt1FUZ6b2ahCFqRC8NqtxWM5vN4xNfP0/X38+dvbn77/Hmyn2T9YxcOHDhw4Hjz0j/xlexk/xhefT/aFQ4cOHDgOMRxvblXP77ebh7qrvewOXx+Rhw4cODA8Q0cbcjM75KHyZwMBw4cOHB8G8es6LZJ5GaJHw4cOHDg+AaOpDjYplKnCn9t0vihWikOHDhw4OiysDrofvPfb5nvwIEDBw4ci0GEWWOpDX7XDad9IL85Fw4cOHDgWHO0QSsZVts0q1ZFvVET65/VcODAgQPHmuNsaJxRthDtC8GwDYYDBw4cOEYcm/ZP3nzKU77ZOnkKN5y/wIEDBw4cZVidBcUEJQl7+YFnRcAoWcWBAwcOHGuOTUlu1hDKt7gvDs7SVBw4cODAseGYNW+GLZxFs6ptjNVDDJteFg4cOHDgWI8RJO2o2VjbqZZVG3Rx4MCBA8cpjracNwtamzU3KVk9nIEDBw4cON7GkQe8vI30GF1FoygZg7tuYuHAgQMHjjXHPn3Ki315qXGTFtbBddNbw4EDBw4cQbw7Nh8xGozY/DbHKs6LAwcOHDhKjusvzYJi3qZKgl8b2ldAOHDgwIHjEMepgl1Ueju6/mNx3ZQFceDAgQPHiCMPVEkRsL19O3jXPoBhiRAHDhw4cBziaANemyBdJ2PJgWes9b1w4MCBA8chjln7f9jdOhTI8xXyQI4DBw4cODYceZMmH2vYl/Pa5G1WLrx548CBAwcOHOs+y/7Yp/6bhPB2P/mrAw4cOHDg2HBshuH2JbxZuTAfjMt3iwMHDhw4TnG0CVVy+LYJlKeUeZkvL2jWTDhw4MCBY5255OMLG6xk6KEdjBi+LuDAgQMHjjVHsum22Nc2kPK7z4J0josDBw4cOPYcs023Ya8tRM7KgrM1ceDAgQPHKY52XGDWTNoPw81GLpJgPOyV4cCBAweOIHlry2p1PI8LebPhg9lAxs17Bw4cOHDgKDnyEYG2adQeqR1TaMcdohQUBw4cOHAc5WiH29ptzR5AHlCLYQUcOHDgwPFmjllSdGoQoU0IN22nm/Vx4MCBA8eaY1YcnCVOs6ZUmyLmqePLXeHAgQMHjgXH2TJcUtqLns9iAG7zCHHgwIEDx57jHeMCyfHag81SxHbYAgcOHDhwnOKYBdf8GG1a2Da6NoH2JqPFgQMHDhwLjrwJlIfJ5JCb5tOsLHjzfRw4cODA8UGOWaCdtaCud3UqafznLjhw4MCB44McbWo0C3V5AyxvUCUDEzhw4MCB4yzHpjiYDw3MttuW+ZIH83InOHDgwIFjzdGW0tpt5aB5+2o2kLEpJuLAgQMHjoDjF2wb2Lv1z5jfAAAAAElFTkSuQmCC" alt="微信分享二维码">
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQ4AAAEOCAAAAABd2qZ5AAAD6UlEQVR42u3aS24bQQwFQN3/0gmQVQDH0nskJWdRswqkUXdPTQCan8cjvn79uWbf/n3Pd1d+z9cdn6/2eMeFAwcOHDiODvr1/u8+eX7Q5+skO7b359A4cODAgeOK43n4bINZQjMDzU81OycOHDhw4PgkRxI+83USvtkJN/viwIEDB45PciShMaHc1+vagiYOHDhw4Pg8xyZZahOnTemwvd5YK8WBAwcOHF2cqgPn//zvN8534MCBAweOOMTuR9BmgbZd/ywk48CBAweOm+zmRcMmHy9oC475o25SxPq3OHDgwIFjwZFvuQm9yWrPT/X8tbXjdwdvAAcOHDhwjA6awLW4bdlxNpaXo+PAgQMHjluOPIAlQfr2t3kydtskw4EDBw4cV73+ZMs87LXf5iF8PzBXh1scOHDgwLHgeL5EkvIl9+ehMW8gbV7nixYUDhw4cOAYccxGHDbf5oW8/RnaQicOHDhw4NhwJNtsQlfe3Gr52sQyosSBAwcOHGuOtnmT3/+ZIYlZIK/hcODAgQPHgqMtouVhuB16m6WX+YuJzoMDBw4cOEqOzcPnww15mrepa27KlDhw4MCB45ajTaJayqSo17aOkmCfN59w4MCBA8cVx2wgoH2kfUMoLzg+9hcOHDhw4FhD5MMKmwZPHqTzBC8P5NF/BRw4cODAseBoR9zaAlz+kElAbd9zklIWlUgcOHDgwDHKbmaBql0tWb+ewijPH71gHDhw4MBRcuThczNA0K6cD8O14w44cODAgePdHHlAyhtL+ajBvq7ZJmzRjjhw4MCBY83RouShbh8CW9BZqREHDhw4cFxx5MW7/FjJCEIy9LBJKYcvCQcOHDhwHMW7tlWz6W7lQfSKr+6/4cCBAweOI468tZO3gtqD5unZPqC+mOnAgQMHDhwjjvaB8/Tp6pHahlYbkv9RHMSBAwcOHAuOdtFZMTGn2dNvLhw4cODAccXRDqtthg+SdK4tUL5jHRw4cODAsVknT7TyMYhkrKEda5shDv/uwIEDBw4cI45NC2fW48rTwnbHfPei7YQDBw4cOEYcSQFu2MIpy3/JnZvk8MVz4cCBAweONUfyGNESo+Ddtpc2yV4+eIEDBw4cODYcs5Z/ztEGvLZceJUQPmab4cCBAweOLsY9ZkE3CdhJqS4P5LN9ZwMcOHDgwIGjrYZthhg2n7SBMOeo/yzAgQMHDhxHHHlw3R/uKqjnowzFc+HAgQMHjg9ytPfMRg3ahtMxLg4cOHDg+FGOvHiXH+j29bS/woEDBw4cVxyz4YC2mdR+npxkNoQxnPLAgQMHDhxHE2J5Se521KDF2uyIAwcOHDjWHL8BS24qXFdV7NwAAAAASUVORK5CYII=" alt="微信分享二维码">
 </div>
 
 
