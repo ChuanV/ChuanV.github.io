@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>HTTP1.0、HTTP1.1与HTTP2.0有啥变化？ | Lawson&#39;s Blog | 尝尽人间百味，方知人间冷暖。</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="HTTP,计算机网络">
+    <meta name="description" content="前言计算机网络是一个开发人员的基础知识，今天我们就来聊聊HTTP的发展历史吧。影响一个网络的因素有：带宽：带宽的大小决定你网络的速率，比如100Mbps的宽带，理论上每秒下载量100Mbps&#x2F;8 &#x3D; 12.5m;上行一般都较小，大概30Mbps左右。延迟：有时候你打游戏的时候，打的正爽，然后网络延时了（460）；在浏览器中，可能是以下原因：  浏览器阻塞（HOL blocking）：浏览器会因为一">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTTP1.0、HTTP1.1与HTTP2.0有啥变化？">
+<meta property="og:url" content="http://lawsan.xyz/2020/07/13/HTTP1.0%E3%80%81HTTP1.1%E4%B8%8EHTTP2.0%E6%9C%89%E5%95%A5%E5%8F%98%E5%8C%96%EF%BC%9F/index.html">
+<meta property="og:site_name" content="Lawson&#39;s Blog">
+<meta property="og:description" content="前言计算机网络是一个开发人员的基础知识，今天我们就来聊聊HTTP的发展历史吧。影响一个网络的因素有：带宽：带宽的大小决定你网络的速率，比如100Mbps的宽带，理论上每秒下载量100Mbps&#x2F;8 &#x3D; 12.5m;上行一般都较小，大概30Mbps左右。延迟：有时候你打游戏的时候，打的正爽，然后网络延时了（460）；在浏览器中，可能是以下原因：  浏览器阻塞（HOL blocking）：浏览器会因为一">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://happychuan-pic.oss-cn-shenzhen.aliyuncs.com/emotion/%E6%88%91%E4%B9%9F%E4%B8%8D%E7%9F%A5%E9%81%93%E6%88%91%E5%8F%88%E4%B8%8D%E8%AF%86%E5%AD%97.jpg">
+<meta property="og:image" content="https://happychuan-pic.oss-cn-shenzhen.aliyuncs.com/2020/7.13/%E4%BA%8C%E8%BF%9B%E5%88%B6%E4%BC%A0%E8%BE%93.png">
+<meta property="og:image" content="https://happychuan-pic.oss-cn-shenzhen.aliyuncs.com/emotion/%E7%A0%96%E5%8E%82%E7%B9%81%E5%BF%99%EF%BC%8C%E5%91%8A%E8%BE%9E.jpg">
+<meta property="article:published_time" content="2020-07-13T04:25:45.000Z">
+<meta property="article:modified_time" content="2020-07-13T05:34:13.400Z">
+<meta property="article:author" content="Lawson">
+<meta property="article:tag" content="HTTP">
+<meta property="article:tag" content="计算机网络">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://happychuan-pic.oss-cn-shenzhen.aliyuncs.com/emotion/%E6%88%91%E4%B9%9F%E4%B8%8D%E7%9F%A5%E9%81%93%E6%88%91%E5%8F%88%E4%B8%8D%E8%AF%86%E5%AD%97.jpg">
+    
+        <link rel="alternate" type="application/atom+xml" title="Lawson&#39;s Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="https://happychuan-pic.oss-cn-shenzhen.aliyuncs.com/assets/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(https://happychuan-pic.oss-cn-shenzhen.aliyuncs.com/assets/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="https://happychuan-pic.oss-cn-shenzhen.aliyuncs.com/assets/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Lawson</h5>
+          <a href="mailto:2292100085@qq.com" title="2292100085@qq.com" class="mail">2292100085@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/ChuanV" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://blog.csdn.net/qq_42335214" target="_blank" >
+                <i class="icon icon-lg icon-send"></i>
+                CSDN
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-exclamation-circle"></i>
+                关于
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">HTTP1.0、HTTP1.1与HTTP2.0有啥变化？</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">HTTP1.0、HTTP1.1与HTTP2.0有啥变化？</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2020-07-13T04:25:45.000Z" itemprop="datePublished" class="page-time">
+  2020-07-13
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#前言"><span class="post-toc-number">1.</span> <span class="post-toc-text">前言</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#HTTP协议是啥？"><span class="post-toc-number">2.</span> <span class="post-toc-text">HTTP协议是啥？</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#HTTP-0-9"><span class="post-toc-number">3.</span> <span class="post-toc-text">HTTP 0.9</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#HTTP-1-0"><span class="post-toc-number">4.</span> <span class="post-toc-text">HTTP 1.0</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#HTTP-1-1"><span class="post-toc-number">5.</span> <span class="post-toc-text">HTTP 1.1</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#HTTP-2-0"><span class="post-toc-number">6.</span> <span class="post-toc-text">HTTP 2.0</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#HTTP-1-x协议的缺陷"><span class="post-toc-number">6.1.</span> <span class="post-toc-text">HTTP 1.x协议的缺陷</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#HTTP-2-0的特点"><span class="post-toc-number">6.2.</span> <span class="post-toc-text">HTTP 2.0的特点</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#写在最后"><span class="post-toc-number">7.</span> <span class="post-toc-text">写在最后</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-HTTP1.0、HTTP1.1与HTTP2.0有啥变化？"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">HTTP1.0、HTTP1.1与HTTP2.0有啥变化？</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2020-07-13 12:25:45" datetime="2020-07-13T04:25:45.000Z"  itemprop="datePublished">2020-07-13</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>计算机网络是一个开发人员的基础知识，今天我们就来聊聊HTTP的发展历史吧。<br>影响一个网络的因素有：<br>带宽：带宽的大小决定你网络的速率，比如100Mbps的宽带，理论上每秒下载量100Mbps/8 = 12.5m;上行一般都较小，大概30Mbps左右。<br>延迟：有时候你打游戏的时候，打的正爽，然后网络延时了（460）；在浏览器中，可能是以下原因：</p>
+<ul>
+<li>浏览器阻塞（HOL blocking）：浏览器会因为一些原因阻塞请求。浏览器对于同一个域名，同时只能有 6个连接（这个根据浏览器内核不同可能会有所差异），超过浏览器最大连接数限制，后续请求就会被阻塞。</li>
+<li>DNS 查询（DNS Lookup）：浏览器需要知道目标服务器的 IP 才能建立连接。将域名解析为 IP 的这个系统就是 DNS。这个通常可以利用DNS缓存结果来达到减少这个时间的目的。</li>
+<li>建立连接（Initial connection）：HTTP 是基于 TCP 协议的，浏览器最快也要在第三次握手时才能捎带 HTTP 请求报文，达到真正的建立连接，但是这些连接无法复用会导致每次请求都经历三次握手和慢启动。三次握手在高延迟的场景下影响较明显，慢启动则对文件类大请求影响较大。<h3 id="HTTP协议是啥？"><a href="#HTTP协议是啥？" class="headerlink" title="HTTP协议是啥？"></a>HTTP协议是啥？</h3><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://happychuan-pic.oss-cn-shenzhen.aliyuncs.com/emotion/%E6%88%91%E4%B9%9F%E4%B8%8D%E7%9F%A5%E9%81%93%E6%88%91%E5%8F%88%E4%B8%8D%E8%AF%86%E5%AD%97.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+HTTP协议 ：Hyper Text Transfer Protocol（超文本传输协议）,是用于从万维网（WWW:World Wide Web）服务器传输超文本到本地浏览器的传送协议。是互联网上应用最为广泛的一种网络协议。<br>HTTP是一个基于TCP/IP通信协议来传递数据（HTML 文件, 图片文件, 查询结果等）。</li>
+</ul>
+<h3 id="HTTP-0-9"><a href="#HTTP-0-9" class="headerlink" title="HTTP 0.9"></a>HTTP 0.9</h3><p>HTTP/0.9是第一个版本的HTTP协议，已过时。它的组成极其简单，只允许客户端发送GET这一种请求，且不支持请求头。由于没有协议头，造成了HTTP/0.9协议只支持一种内容，即纯文本。不过网页仍然支持用HTML语言格式化，同时无法插入图片。<br>HTTP/0.9具有典型的无状态性，每个事务独立进行处理，事务结束时就释放这个连接。<br>一次HTTP/0.9的传输首先要建立一个由客户端到Web服务器的TCP连接，由客户端发起一个请求，然后由Web服务器返回页面内容，然后连接会关闭。如果请求的页面不存在，也不会返回任何错误码。</p>
+<h3 id="HTTP-1-0"><a href="#HTTP-1-0" class="headerlink" title="HTTP 1.0"></a>HTTP 1.0</h3><p>在HTTP 1.0中对上一代的版本添加了很多功能：</p>
+<ol>
+<li>请求与响应支持头域</li>
+<li>响应对象以一个响应状态行开始</li>
+<li>响应对象不只限于超文本</li>
+<li>开始支持客户端通过POST方法向Web服务器提交数据，支持GET、HEAD、POST方法</li>
+<li>支持长连接（但默认还是使用短连接），缓存机制，以及身份认证</li>
+</ol>
+<p><strong>缺点</strong>：每个TCP连接只能发送一个请求。发送数据完毕，连接就关闭，如果还要请求其他资源，就必须再新建一个连接。TCP连接的新建成本很高，因为需要客户端和服务器三次握手，并且开始时发送速率较慢（slow start）。所以，HTTP 1.0版本的性能比较差。随着网页加载的外部资源越来越多，这个问题就愈发突出了。</p>
+<h3 id="HTTP-1-1"><a href="#HTTP-1-1" class="headerlink" title="HTTP 1.1"></a>HTTP 1.1</h3><p> 是目前使用最广泛的协议版本，相对于HTTP/1.0新增了以下内容：</p>
+<ol>
+<li><strong>引入了持久连接</strong>（persistent connection），即TCP连接默认不关闭，可以被多个请求复用，不用声明Connection: keep-alive。客户端和服务器发现对方一段时间没有活动，就可以主动关闭连接。不过，规范的做法是，客户端在最后一个请求时，发送Connection: close，明确要求服务器关闭TCP连接；</li>
+<li><strong>多了一些缓存处理字段</strong>HTTP/1.1在1.0的基础上加入了一些cache的新特性，引入了实体标签，一般被称为e-tags，新增更为强大的Cache-Control头。</li>
+<li>1.1版还新增了许多请求方法：PUT、PATCH、HEAD、 OPTIONS、DELETE。另外，客户端请求的头信息新增了Host字段，用来指定服务器的域名。</li>
+<li><strong>引入了管道机制</strong>（pipelining），即在同一个TCP连接里面，客户端可以同时发送多个请求。这样就进一步改进了HTTP协议的效率。举例来说，客户端需要请求两个资源。以前的做法是，在同一个TCP连接里面，先发送A请求，然后等待服务器做出回应，收到后再发出B请求。管道机制则是允许浏览器同时发出A请求和B请求，但是服务器还是按照顺序，先回应A请求，完成后再回应B请求。</li>
+<li><strong>采用分块传输编码</strong>，对于一些很耗时的动态操作，服务器需要等到所有操作完成，才能发送数据，显然这样的效率不高。更好的处理方法是，产生一块数据，就发送一块，采用”流模式”（stream）取代”缓存模式”（buffer），这是支持文件断点续传的基础。<br><strong>缺点</strong>：虽然1.1版允许复用TCP连接，但是同一个TCP连接里面，所有的数据通信是按次序进行的。服务器只有处理完一个回应，才会进行下一个回应。要是前面的回应特别慢，后面就会有许多请求排队等着。这称为”队头堵塞”（Head-of-line blocking）。为了避免这个问题，只有两种方法：一是减少请求数，二是同时多开持久连接。<br>这导致了很多的网页优化技巧，比如合并脚本和样式表、将图片嵌入CSS代码、域名分片（domain sharding）等等。</li>
+</ol>
+<h3 id="HTTP-2-0"><a href="#HTTP-2-0" class="headerlink" title="HTTP 2.0"></a>HTTP 2.0</h3><p>HTTP 2.0 主要基于<code>SPDY协议</code>。HTTP2.0的特点是：在不改动HTTP语义、方法、状态码、URI及首部字段的情况下，大幅度提高了web性能。<br><strong>SPDY协议是啥？</strong><br>它是Google开发的基于TCP协议的应用层协议。目标是优化HTTP协议的性能，通过<code>压缩</code>、<code>多路复用</code>和<code>优先级</code>等技术，缩短网页的加载时间并提高安全性。SPDY协议的核心思想是<code>尽量减少TCP连接数</code>。SPDY并不是一种用于替代HTTP的协议，而是对HTTP协议的增强。</p>
+<h4 id="HTTP-1-x协议的缺陷"><a href="#HTTP-1-x协议的缺陷" class="headerlink" title="HTTP 1.x协议的缺陷"></a>HTTP 1.x协议的缺陷</h4><ol>
+<li>HTTP 1.0 一个TCP连接只能发起一个HTTP请求，在资源多面前，每次连接都要3次TCP握手还有断开的4次握手，非常费时间。</li>
+<li>HTTP 1.1 一个TCP连接能发起多个HTTP请求，但是会出现队列头阻塞问题，因此客户端在需要发起多次请求时，通常会采用建立多连接来减少延迟。</li>
+<li>单向请求，只能由客户端发起。</li>
+<li>请求报文与响应报文首部信息冗余量大。</li>
+<li>数据未压缩，导致数据的传输量大。<br><a href="https://http2.akamai.com/demo" target="_blank" rel="noopener">HTTP1.1与HTTP2.0速度比较</a><h4 id="HTTP-2-0的特点"><a href="#HTTP-2-0的特点" class="headerlink" title="HTTP 2.0的特点"></a>HTTP 2.0的特点</h4>HTTP2.0中，有两个概念非常重要：帧（frame）和流（stream）。帧是最小的数据单位，每个帧会标识出该帧属于哪个流，流是多个帧组成的数据流。</li>
+<li>二进制分帧：HTTP 2.0 的所有帧都采用二进制编码；在HTTP1.x中，我们是通过文本的方式传输数据。基于文本的方式传输数据存在很多缺陷，文本的表现形式有多样性，因此要做到健壮性考虑的场景必然有很多，但是二进制则不同，只有0和1的组合，因此选择了二进制传输，实现方便且健壮。<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://happychuan-pic.oss-cn-shenzhen.aliyuncs.com/2020/7.13/%E4%BA%8C%E8%BF%9B%E5%88%B6%E4%BC%A0%E8%BE%93.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+为了保证HTTP不受影响，那就需要在应用层（HTTP2.0）和传输层（TCP or UDP）之间增加一个二进制分帧层。在二进制分帧层上，HTTP2.0会将所有传输的信息分为更小的消息和帧，并采用二进制格式编码，其中HTTP1.x的首部信息会被封装到Headers帧，而Request Body则封装到Data帧。</li>
+<li>多路复用：多路复用允许同时通过单一的HTTP/2.0 连接发起多重的请求-响应消息。有了新的分帧机制后，HTTP/2.0不再依赖多个TCP 连接去处理更多并发的请求。每个数据流都拆分成很多互不依赖的帧，而这些帧可以交错（乱序发送），还可以分优先级。最后再在另一端根据每个帧首部的流标识符把它们重新组合起来。HTTP 2.0 连接都是持久化的，而且客户端与服务器之间也只需要一个连接（每个域名一个连接）即可。</li>
+<li>头部压缩：随着web功能越来越复杂，请求数量越来越多，随之而来的就是头部的流量越来越多，并且在建立初次链接之后的链接也要发送user-agent等信息，是在是一种浪费。因此，http2提出了对请求和响应的头部进行压缩，即不再只是压缩主题部分，这种压缩方式就是HAPCK — 其设计简单而灵活。</li>
+<li>服务器推送：服务端推送能把客户端所需要的资源伴随着index.html一起发送到客户端，省去了客户端重复请求的步骤。正因为没有发起请求，建立连接等操作，所以静态资源通过服务端推送的方式可以极大地提升速度。</li>
+<li>更多安全：HTTP2.0使用了tls的拓展ALPN做为协议升级，除此之外，HTTP2.0对tls的安全性做了近一步加强，通过黑名单机制禁用了几百种不再安全的加密算法。</li>
+</ol>
+<h3 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h3><p>版本更新都是为了解决上一代的棘手问题，HTTP3.0协议基于QUIC，（Quick UDP Internet Connections)基于UDP的传输层协议。计算机网络在发明至今发展飞快，技术迭代迅速，科技的进步也给我们的生活带来了便利。<br>好了，就写到这了！</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://happychuan-pic.oss-cn-shenzhen.aliyuncs.com/emotion/%E7%A0%96%E5%8E%82%E7%B9%81%E5%BF%99%EF%BC%8C%E5%91%8A%E8%BE%9E.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2020-07-13T05:34:13.400Z" itemprop="dateUpdated">2020-07-13 13:34:13</time>
+</span><br>
+
+
+        
+        版权声明：本文为博主原创文章，遵循<a href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank" >CC 4.0 BY-SA</a>版权协议，转载请附上原文出处链接。
+        
+    </div>
+    
+    <footer>
+        <a href="http://lawsan.xyz">
+            <img src="https://happychuan-pic.oss-cn-shenzhen.aliyuncs.com/assets/avatar.jpg" alt="Lawson">
+            Lawson
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTTP/" rel="tag">HTTP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="tag">计算机网络</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://lawsan.xyz/2020/07/13/HTTP1.0%E3%80%81HTTP1.1%E4%B8%8EHTTP2.0%E6%9C%89%E5%95%A5%E5%8F%98%E5%8C%96%EF%BC%9F/&title=《HTTP1.0、HTTP1.1与HTTP2.0有啥变化？》 — Lawson's Blog&pic=https://happychuan-pic.oss-cn-shenzhen.aliyuncs.com/assets/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://lawsan.xyz/2020/07/13/HTTP1.0%E3%80%81HTTP1.1%E4%B8%8EHTTP2.0%E6%9C%89%E5%95%A5%E5%8F%98%E5%8C%96%EF%BC%9F/&title=《HTTP1.0、HTTP1.1与HTTP2.0有啥变化？》 — Lawson's Blog&source=劳生穿的博客。做人最重要的是开心。" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://lawsan.xyz/2020/07/13/HTTP1.0%E3%80%81HTTP1.1%E4%B8%8EHTTP2.0%E6%9C%89%E5%95%A5%E5%8F%98%E5%8C%96%EF%BC%9F/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《HTTP1.0、HTTP1.1与HTTP2.0有啥变化？》 — Lawson's Blog&url=http://lawsan.xyz/2020/07/13/HTTP1.0%E3%80%81HTTP1.1%E4%B8%8EHTTP2.0%E6%9C%89%E5%95%A5%E5%8F%98%E5%8C%96%EF%BC%9F/&via=http://lawsan.xyz" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://lawsan.xyz/2020/07/13/HTTP1.0%E3%80%81HTTP1.1%E4%B8%8EHTTP2.0%E6%9C%89%E5%95%A5%E5%8F%98%E5%8C%96%EF%BC%9F/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2020/07/12/%E5%87%BD%E6%95%B0%E6%9F%AF%E9%87%8C%E5%8C%96/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">函数柯里化</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+        var id = location.pathname
+        if (location.pathname.length > 50) {
+          id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
+        }
+        const gitalk = new Gitalk({
+          clientID: '60476e5f2147b66e183a',
+          clientSecret: '62d6d1e9df0f3f402e64a84793b11b781331015e',
+          repo: 'blog_comments',
+          owner: 'ChuanV',
+          admin: ['ChuanV'],
+          id: id,      // Ensure uniqueness and length less than 50
+          title: document.title.split('|')[0],
+          distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="https://happychuan-pic.oss-cn-shenzhen.aliyuncs.com/assets/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="https://happychuan-pic.oss-cn-shenzhen.aliyuncs.com/assets/wechat.jpg" data-alipay="https://happychuan-pic.oss-cn-shenzhen.aliyuncs.com/assets/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Lawson &copy; 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://lawsan.xyz/2020/07/13/HTTP1.0%E3%80%81HTTP1.1%E4%B8%8EHTTP2.0%E6%9C%89%E5%95%A5%E5%8F%98%E5%8C%96%EF%BC%9F/&title=《HTTP1.0、HTTP1.1与HTTP2.0有啥变化？》 — Lawson's Blog&pic=https://happychuan-pic.oss-cn-shenzhen.aliyuncs.com/assets/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://lawsan.xyz/2020/07/13/HTTP1.0%E3%80%81HTTP1.1%E4%B8%8EHTTP2.0%E6%9C%89%E5%95%A5%E5%8F%98%E5%8C%96%EF%BC%9F/&title=《HTTP1.0、HTTP1.1与HTTP2.0有啥变化？》 — Lawson's Blog&source=劳生穿的博客。做人最重要的是开心。" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://lawsan.xyz/2020/07/13/HTTP1.0%E3%80%81HTTP1.1%E4%B8%8EHTTP2.0%E6%9C%89%E5%95%A5%E5%8F%98%E5%8C%96%EF%BC%9F/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《HTTP1.0、HTTP1.1与HTTP2.0有啥变化？》 — Lawson's Blog&url=http://lawsan.xyz/2020/07/13/HTTP1.0%E3%80%81HTTP1.1%E4%B8%8EHTTP2.0%E6%9C%89%E5%95%A5%E5%8F%98%E5%8C%96%EF%BC%9F/&via=http://lawsan.xyz" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://lawsan.xyz/2020/07/13/HTTP1.0%E3%80%81HTTP1.1%E4%B8%8EHTTP2.0%E6%9C%89%E5%95%A5%E5%8F%98%E5%8C%96%EF%BC%9F/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQ4AAAEOCAAAAABd2qZ5AAAD6UlEQVR42u3aS24bQQwFQN3/0gmQVQDH0nskJWdRswqkUXdPTQCan8cjvn79uWbf/n3Pd1d+z9cdn6/2eMeFAwcOHDiODvr1/u8+eX7Q5+skO7b359A4cODAgeOK43n4bINZQjMDzU81OycOHDhw4PgkRxI+83USvtkJN/viwIEDB45PciShMaHc1+vagiYOHDhw4Pg8xyZZahOnTemwvd5YK8WBAwcOHF2cqgPn//zvN8534MCBAweOOMTuR9BmgbZd/ywk48CBAweOm+zmRcMmHy9oC475o25SxPq3OHDgwIFjwZFvuQm9yWrPT/X8tbXjdwdvAAcOHDhwjA6awLW4bdlxNpaXo+PAgQMHjluOPIAlQfr2t3kydtskw4EDBw4cV73+ZMs87LXf5iF8PzBXh1scOHDgwLHgeL5EkvIl9+ehMW8gbV7nixYUDhw4cOAYccxGHDbf5oW8/RnaQicOHDhw4NhwJNtsQlfe3Gr52sQyosSBAwcOHGuOtnmT3/+ZIYlZIK/hcODAgQPHgqMtouVhuB16m6WX+YuJzoMDBw4cOEqOzcPnww15mrepa27KlDhw4MCB45ajTaJayqSo17aOkmCfN59w4MCBA8cVx2wgoH2kfUMoLzg+9hcOHDhw4FhD5MMKmwZPHqTzBC8P5NF/BRw4cODAseBoR9zaAlz+kElAbd9zklIWlUgcOHDgwDHKbmaBql0tWb+ewijPH71gHDhw4MBRcuThczNA0K6cD8O14w44cODAgePdHHlAyhtL+ajBvq7ZJmzRjjhw4MCBY83RouShbh8CW9BZqREHDhw4cFxx5MW7/FjJCEIy9LBJKYcvCQcOHDhwHMW7tlWz6W7lQfSKr+6/4cCBAweOI468tZO3gtqD5unZPqC+mOnAgQMHDhwjjvaB8/Tp6pHahlYbkv9RHMSBAwcOHAuOdtFZMTGn2dNvLhw4cODAccXRDqtthg+SdK4tUL5jHRw4cODAsVknT7TyMYhkrKEda5shDv/uwIEDBw4cI45NC2fW48rTwnbHfPei7YQDBw4cOEYcSQFu2MIpy3/JnZvk8MVz4cCBAweONUfyGNESo+Ddtpc2yV4+eIEDBw4cODYcs5Z/ztEGvLZceJUQPmab4cCBAweOLsY9ZkE3CdhJqS4P5LN9ZwMcOHDgwIGjrYZthhg2n7SBMOeo/yzAgQMHDhxHHHlw3R/uKqjnowzFc+HAgQMHjg9ytPfMRg3ahtMxLg4cOHDg+FGOvHiXH+j29bS/woEDBw4cVxyz4YC2mdR+npxkNoQxnPLAgQMHDhxHE2J5Se521KDF2uyIAwcOHDjWHL8BS24qXFdV7NwAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1279039707&web_id=1279039707')
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = 'Lawson's Blog';
+            clearTimeout(titleTime);
+        } else {
+            document.title = 'Lawson's Blog';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
