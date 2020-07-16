@@ -28,18 +28,18 @@
 <meta property="og:site_name" content="Lawson&#39;s Blog">
 <meta property="og:description" content="$attrs如果向一个子组件传递数据attribute时，该子组件并没有相应prop定义的attribute时。这些 attribute 会被添加到这个组件的根元素上。示例： 12345678910111213141516171819&#x2F;&#x2F;父组件&lt;template&gt;  &lt;div class&#x3D;&quot;home&quot;&gt;    以下为组件S1的内容    &lt;S1 :foo&#x3D;&#39;foo&#39;">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://lawsan.xyz/2020/07/15/Vue%E4%B8%AD%E7%9A%84$attrs%E5%92%8C$listeners/Vue%E4%B8%AD%E7%9A%84$attrs%E5%92%8C$listeners_files/1.jpg">
-<meta property="og:image" content="http://lawsan.xyz/2020/07/15/Vue%E4%B8%AD%E7%9A%84$attrs%E5%92%8C$listeners/Vue%E4%B8%AD%E7%9A%84$attrs%E5%92%8C$listeners_files/2.jpg">
-<meta property="og:image" content="http://lawsan.xyz/2020/07/15/Vue%E4%B8%AD%E7%9A%84$attrs%E5%92%8C$listeners/Vue%E4%B8%AD%E7%9A%84$attrs%E5%92%8C$listeners_files/3.jpg">
-<meta property="og:image" content="http://lawsan.xyz/2020/07/15/Vue%E4%B8%AD%E7%9A%84$attrs%E5%92%8C$listeners/Vue%E4%B8%AD%E7%9A%84$attrs%E5%92%8C$listeners_files/4.jpg">
-<meta property="og:image" content="http://lawsan.xyz/2020/07/15/Vue%E4%B8%AD%E7%9A%84$attrs%E5%92%8C$listeners/Vue%E4%B8%AD%E7%9A%84$attrs%E5%92%8C$listeners_files/5.jpg">
-<meta property="og:image" content="http://lawsan.xyz/2020/07/15/Vue%E4%B8%AD%E7%9A%84$attrs%E5%92%8C$listeners/Vue%E4%B8%AD%E7%9A%84$attrs%E5%92%8C$listeners_files/6.jpg">
+<meta property="og:image" content="https://happychuan-pic.oss-cn-shenzhen.aliyuncs.com/2020/July/15/1.jpg">
+<meta property="og:image" content="https://happychuan-pic.oss-cn-shenzhen.aliyuncs.com/2020/July/15/2.jpg">
+<meta property="og:image" content="https://happychuan-pic.oss-cn-shenzhen.aliyuncs.com/2020/July/15/3.jpg">
+<meta property="og:image" content="https://happychuan-pic.oss-cn-shenzhen.aliyuncs.com/2020/July/15/4.jpg">
+<meta property="og:image" content="https://happychuan-pic.oss-cn-shenzhen.aliyuncs.com/2020/July/15/5.jpg">
+<meta property="og:image" content="https://happychuan-pic.oss-cn-shenzhen.aliyuncs.com/2020/July/15/6.jpg">
 <meta property="article:published_time" content="2020-07-15T10:46:04.000Z">
-<meta property="article:modified_time" content="2020-07-16T03:13:28.596Z">
+<meta property="article:modified_time" content="2020-07-16T03:22:39.944Z">
 <meta property="article:author" content="Lawson">
 <meta property="article:tag" content="Vue">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://lawsan.xyz/2020/07/15/Vue%E4%B8%AD%E7%9A%84$attrs%E5%92%8C$listeners/Vue%E4%B8%AD%E7%9A%84$attrs%E5%92%8C$listeners_files/1.jpg">
+<meta name="twitter:image" content="https://happychuan-pic.oss-cn-shenzhen.aliyuncs.com/2020/July/15/1.jpg">
     
         <link rel="alternate" type="application/atom+xml" title="Lawson&#39;s Blog" href="/atom.xml">
     
@@ -202,14 +202,14 @@
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="Vue中的$attrs和$listeners_files/1.jpg" alt="" title="">
+                    <img src="https://happychuan-pic.oss-cn-shenzhen.aliyuncs.com/2020/July/15/1.jpg" alt="" title="">
                 </div>
                 <div class="image-caption"></div>
             </figure>
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="Vue中的$attrs和$listeners_files/2.jpg" alt="" title="">
+                    <img src="https://happychuan-pic.oss-cn-shenzhen.aliyuncs.com/2020/July/15/2.jpg" alt="" title="">
                 </div>
                 <div class="image-caption"></div>
             </figure>
@@ -219,23 +219,23 @@
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="Vue中的$attrs和$listeners_files/3.jpg" alt="" title="">
+                    <img src="https://happychuan-pic.oss-cn-shenzhen.aliyuncs.com/2020/July/15/3.jpg" alt="" title="">
                 </div>
                 <div class="image-caption"></div>
             </figure>
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="Vue中的$attrs和$listeners_files/4.jpg" alt="" title="">
+                    <img src="https://happychuan-pic.oss-cn-shenzhen.aliyuncs.com/2020/July/15/4.jpg" alt="" title="">
                 </div>
                 <div class="image-caption"></div>
             </figure>
-<p>通过对象取值的方法是行不通的，比如<code></code>,但是我们可以通过<code>v-bind=&quot;$attrs&quot;</code>传入其内部组件。</p>
+<p>通过对象取值的方法是行不通的，比如<code>$attrs.eoo</code>,但是我们可以通过<code>v-bind=&quot;$attrs&quot;</code>传入其内部组件。</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">//修改后的子组件S1,引入子组件S1Child</span><br><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>foo:&#123;&#123;foo&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>attrs:&#123;&#123;$attrs&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">	以下为组件S1Child的内容</span><br><span class="line">	<span class="tag">&lt;<span class="name">s1-child</span> <span class="attr">v-bind</span>=<span class="string">"$attrs"</span>&gt;</span><span class="tag">&lt;/<span class="name">s1-child</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line">...</span><br><span class="line">import S1Child from '@/components/S1Child.vue'</span><br><span class="line">data()&#123;</span><br><span class="line">	return&#123;&#125;</span><br><span class="line">&#125;,</span><br><span class="line">components:&#123;</span><br><span class="line">	S1Child,</span><br><span class="line">&#125;,</span><br><span class="line">props:['foo'],</span><br><span class="line">inheritAttrs: false,</span><br><span class="line">...</span><br><span class="line">//子组件S1Child</span><br><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>eoo:&#123;&#123;eoo&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line">...</span><br><span class="line">props:['eoo'],</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="Vue中的$attrs和$listeners_files/5.jpg" alt="" title="">
+                    <img src="https://happychuan-pic.oss-cn-shenzhen.aliyuncs.com/2020/July/15/5.jpg" alt="" title="">
                 </div>
                 <div class="image-caption"></div>
             </figure>
@@ -246,7 +246,7 @@
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="Vue中的$attrs和$listeners_files/6.jpg" alt="" title="">
+                    <img src="https://happychuan-pic.oss-cn-shenzhen.aliyuncs.com/2020/July/15/6.jpg" alt="" title="">
                 </div>
                 <div class="image-caption"></div>
             </figure>
@@ -259,7 +259,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2020-07-16T03:13:28.596Z" itemprop="dateUpdated">2020-07-16 11:13:28</time>
+    最后更新时间：<time datetime="2020-07-16T03:22:39.944Z" itemprop="dateUpdated">2020-07-16 11:22:39</time>
 </span><br>
 
 
