@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>记一次抓包翻车现场 | Lawson&#39;s Blog | 苦中作乐，方能心安理得</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="本来想通过抓取学小易的接口来进行查题，没想到抓取成功后，搜的第二道题，学小易就把我账号给封掉了。                                                                                                            抓包工具准备 一部已经root的手机 抓包软件httpCanary通过httpCanar">
+<meta property="og:type" content="article">
+<meta property="og:title" content="记一次抓包翻车现场">
+<meta property="og:url" content="http://lawsan.xyz/2020/09/29/%E8%AE%B0%E4%B8%80%E6%AC%A1%E6%8A%93%E5%8C%85%E7%BF%BB%E8%BD%A6%E7%8E%B0%E5%9C%BA/index.html">
+<meta property="og:site_name" content="Lawson&#39;s Blog">
+<meta property="og:description" content="本来想通过抓取学小易的接口来进行查题，没想到抓取成功后，搜的第二道题，学小易就把我账号给封掉了。                                                                                                            抓包工具准备 一部已经root的手机 抓包软件httpCanary通过httpCanar">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://happychuan-pic.oss-cn-shenzhen.aliyuncs.com/emotion/%E6%88%91%E7%89%B9%E4%B9%88.jpg">
+<meta property="og:image" content="https://happychuan-pic.oss-cn-shenzhen.aliyuncs.com/2020/Sep/29/s1.JPG">
+<meta property="og:image" content="https://happychuan-pic.oss-cn-shenzhen.aliyuncs.com/2020/Sep/29/s2.JPG">
+<meta property="og:image" content="https://happychuan-pic.oss-cn-shenzhen.aliyuncs.com/emotion/%E7%86%8A%E7%8C%AB%E4%BA%BA%E5%93%AD.jpg">
+<meta property="article:published_time" content="2020-09-29T05:54:49.000Z">
+<meta property="article:modified_time" content="2020-09-29T06:16:09.802Z">
+<meta property="article:author" content="Lawson">
+<meta property="article:tag" content="个人博客，前端博客，前端开发，hexo，JavaScript，Chuan">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://happychuan-pic.oss-cn-shenzhen.aliyuncs.com/emotion/%E6%88%91%E7%89%B9%E4%B9%88.jpg">
+    
+        <link rel="alternate" type="application/atom+xml" title="Lawson&#39;s Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="https://happychuan-pic.oss-cn-shenzhen.aliyuncs.com/assets/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(https://happychuan-pic.oss-cn-shenzhen.aliyuncs.com/assets/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="https://happychuan-pic.oss-cn-shenzhen.aliyuncs.com/assets/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Lawson</h5>
+          <a href="mailto:2292100085@qq.com" title="2292100085@qq.com" class="mail">2292100085@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/ChuanV" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://blog.csdn.net/qq_42335214" target="_blank" >
+                <i class="icon icon-lg icon-send"></i>
+                CSDN
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-exclamation-circle"></i>
+                关于
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">记一次抓包翻车现场</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">记一次抓包翻车现场</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2020-09-29T05:54:49.000Z" itemprop="datePublished" class="page-time">
+  2020-09-29
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#抓包工具准备"><span class="post-toc-number">1.</span> <span class="post-toc-text">抓包工具准备</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#通过httpCanary抓取API"><span class="post-toc-number">2.</span> <span class="post-toc-text">通过httpCanary抓取API</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#运行环境"><span class="post-toc-number">3.</span> <span class="post-toc-text">运行环境</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#程序代码"><span class="post-toc-number">4.</span> <span class="post-toc-text">程序代码</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#结尾"><span class="post-toc-number">5.</span> <span class="post-toc-text">结尾</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-记一次抓包翻车现场"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">记一次抓包翻车现场</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2020-09-29 13:54:49" datetime="2020-09-29T05:54:49.000Z"  itemprop="datePublished">2020-09-29</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>本来想通过抓取学小易的接口来进行查题，没想到抓取成功后，搜的第二道题，学小易就把我账号给封掉了。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://happychuan-pic.oss-cn-shenzhen.aliyuncs.com/emotion/%E6%88%91%E7%89%B9%E4%B9%88.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<h3 id="抓包工具准备"><a href="#抓包工具准备" class="headerlink" title="抓包工具准备"></a>抓包工具准备</h3><ol>
+<li>一部已经root的手机</li>
+<li>抓包软件httpCanary<h3 id="通过httpCanary抓取API"><a href="#通过httpCanary抓取API" class="headerlink" title="通过httpCanary抓取API"></a>通过httpCanary抓取API</h3>登陆接口 :<code>https://app.51xuexiaoyi.com/api/v1/login</code>,会获取到<code>api_token</code>,查题需要。<br>查题接口 :<code>https://app.51xuexiaoyi.com/api/v1/searchQuestion</code><h3 id="运行环境"><a href="#运行环境" class="headerlink" title="运行环境"></a>运行环境</h3></li>
+<li>node环境</li>
+<li>下载依赖 <code>npm i request request-promise-native -S</code></li>
+<li>运行 <code>node index.js</code><h3 id="程序代码"><a href="#程序代码" class="headerlink" title="程序代码"></a>程序代码</h3>配置文件<code>config.js</code><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> App = &#123;</span><br><span class="line">    <span class="string">'app-version'</span>:<span class="string">'1.0.6'</span>,</span><br><span class="line">    platform:<span class="string">'android'</span>,</span><br><span class="line">    device:<span class="string">'AkUmMFxRuen3SjFGi16BsRmFHoXUHa8Gq1KwDDlOSIw2'</span>,</span><br><span class="line">    <span class="string">'user-agent'</span>:<span class="string">'okhttp/3.11.0'</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    login:&#123;</span><br><span class="line">        URI:<span class="string">'https://app.51xuexiaoyi.com/api/v1/login'</span>,</span><br><span class="line">        headers:&#123;</span><br><span class="line">            device:App.device,</span><br><span class="line">            platform:App.platform,</span><br><span class="line">            <span class="string">'app-version'</span>:App[<span class="string">'app-version'</span>],</span><br><span class="line">            <span class="string">'user-agent'</span>:App[<span class="string">'user-agent'</span>],</span><br><span class="line">            <span class="string">'content-type'</span>:<span class="string">'application/json;charset=utf-8'</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    searchQuestion:&#123;</span><br><span class="line">        URI:<span class="string">'https://app.51xuexiaoyi.com/api/v1/searchQuestion'</span>,</span><br><span class="line">        headers:&#123;</span><br><span class="line">            device:App.device,</span><br><span class="line">            platform:App.platform,</span><br><span class="line">            <span class="string">'app-version'</span>:App[<span class="string">'app-version'</span>],</span><br><span class="line">            <span class="string">'user-agent'</span>:App[<span class="string">'user-agent'</span>],</span><br><span class="line">            <span class="string">'content-type'</span>:<span class="string">'application/json;charset=utf-8'</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+主要的查题程序<code>searchQuestion.js</code><br>登陆函数天自己的账号和密码即可。<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Rp = <span class="built_in">require</span>(<span class="string">'request-promise-native'</span>)</span><br><span class="line"><span class="keyword">const</span> Config = <span class="built_in">require</span>(<span class="string">'./config'</span>)</span><br><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>)</span><br><span class="line"></span><br><span class="line"> <span class="comment">// 登陆</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">login</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">const</span> options = &#123;<span class="attr">method</span>:<span class="string">'POST'</span>,<span class="attr">uri</span>:Config.login.URI,<span class="attr">body</span>:&#123;<span class="string">'username'</span>:<span class="string">'XXXXXX'</span>,<span class="string">'password'</span>:<span class="string">'XXXXXX'</span>&#125;,<span class="attr">headers</span>:Config.login.headers,<span class="attr">json</span>: <span class="literal">true</span>&#125;</span><br><span class="line">    <span class="keyword">return</span> Rp(options)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//搜题</span></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">searchQuestion</span>(<span class="params">question</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> apiToken = <span class="built_in">JSON</span>.parse(fs.readFileSync(<span class="string">'./token.txt'</span>,<span class="string">'utf-8'</span>))</span><br><span class="line">    <span class="keyword">const</span> options = &#123;<span class="attr">method</span>:<span class="string">'POST'</span>,<span class="attr">uri</span>:Config.searchQuestion.URI,<span class="attr">body</span>:&#123;<span class="string">'keyword'</span>:question&#125;,<span class="attr">headers</span>:Config.searchQuestion.headers,<span class="attr">json</span>: <span class="literal">true</span>&#125;</span><br><span class="line">    options.headers.token = apiToken.api_token</span><br><span class="line">    options.headers.t = <span class="built_in">String</span>(<span class="built_in">Date</span>.now())</span><br><span class="line">    <span class="keyword">return</span> Rp(options)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//保存token，不用每次都登陆请求</span></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">saveToken</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> loginResult = <span class="keyword">await</span> login()</span><br><span class="line">    <span class="keyword">if</span>(loginResult.code == <span class="number">200</span>)&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(getTime() + <span class="string">'===&gt;'</span> +<span class="string">"token保存成功"</span>)</span><br><span class="line">        fs.writeFileSync(<span class="string">'./token.txt'</span>,<span class="built_in">JSON</span>.stringify(loginResult.data),<span class="string">'utf-8'</span>)</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(getTime() + <span class="string">'===&gt;'</span> +<span class="string">"token保存失败"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//定时更新 token</span></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">updateToken</span>(<span class="params">isRun,time</span>)</span>&#123;</span><br><span class="line">    isRun &amp;&amp; <span class="keyword">await</span> saveToken()</span><br><span class="line">    setInterval(<span class="keyword">async</span>()=&gt;&#123;</span><br><span class="line">        <span class="keyword">await</span> saveToken()</span><br><span class="line">    &#125;,time)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//当前时间</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getTime</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">const</span> d = <span class="keyword">new</span> <span class="built_in">Date</span>()</span><br><span class="line">    <span class="keyword">const</span> y = d.getFullYear()</span><br><span class="line">    <span class="keyword">const</span> m = <span class="built_in">String</span>(d.getMonth() + <span class="number">1</span>).padStart(<span class="number">2</span>,<span class="string">'0'</span>)</span><br><span class="line">    <span class="keyword">const</span> da = <span class="built_in">String</span>(d.getDate()).padStart(<span class="number">2</span>,<span class="string">'0'</span>)</span><br><span class="line">    <span class="keyword">const</span> h = <span class="built_in">String</span>(d.getHours()).padStart(<span class="number">2</span>,<span class="string">'0'</span>)</span><br><span class="line">    <span class="keyword">const</span> f = <span class="built_in">String</span>(d.getMinutes()).padStart(<span class="number">2</span>,<span class="string">'0'</span>)</span><br><span class="line">    <span class="keyword">const</span> s = <span class="built_in">String</span>(d.getSeconds()).padStart(<span class="number">2</span>,<span class="string">'0'</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="string">`<span class="subst">$&#123;y&#125;</span>-<span class="subst">$&#123;m&#125;</span>-<span class="subst">$&#123;da&#125;</span> <span class="subst">$&#123;h&#125;</span>:<span class="subst">$&#123;f&#125;</span>:<span class="subst">$&#123;s&#125;</span>`</span></span><br><span class="line">&#125;</span><br><span class="line"> <span class="built_in">module</span>.exports = &#123;</span><br><span class="line">     updateToken,</span><br><span class="line">     searchQuestion</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+主程序<code>main.js</code><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123;updateToken,searchQuestion&#125; = <span class="built_in">require</span>(<span class="string">'./searchQuestion'</span>)</span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">main</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">   <span class="keyword">await</span> updateToken(<span class="literal">true</span>,<span class="number">1000</span>*<span class="number">60</span>*<span class="number">60</span>*<span class="number">24</span>*<span class="number">7</span>)</span><br><span class="line">   <span class="keyword">let</span> s = <span class="keyword">await</span> searchQuestion(<span class="string">'中国辛亥革命'</span>)</span><br><span class="line">   <span class="built_in">console</span>.log(s)</span><br><span class="line">&#125;</span><br><span class="line">main()</span><br></pre></td></tr></table></figure>
+运行结果：<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://happychuan-pic.oss-cn-shenzhen.aliyuncs.com/2020/Sep/29/s1.JPG" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://happychuan-pic.oss-cn-shenzhen.aliyuncs.com/2020/Sep/29/s2.JPG" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+</li>
+</ol>
+<h3 id="结尾"><a href="#结尾" class="headerlink" title="结尾"></a>结尾</h3><p>可惜了，账号被封掉了。进度被打断。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://happychuan-pic.oss-cn-shenzhen.aliyuncs.com/emotion/%E7%86%8A%E7%8C%AB%E4%BA%BA%E5%93%AD.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2020-09-29T06:16:09.802Z" itemprop="dateUpdated">2020-09-29 14:16:09</time>
+</span><br>
+
+
+        
+        版权声明：本文为博主原创文章，遵循<a href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank" >CC 4.0 BY-SA</a>版权协议，转载请附上原文出处链接。
+        
+    </div>
+    
+    <footer>
+        <a href="http://lawsan.xyz">
+            <img src="https://happychuan-pic.oss-cn-shenzhen.aliyuncs.com/assets/avatar.jpg" alt="Lawson">
+            Lawson
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://lawsan.xyz/2020/09/29/%E8%AE%B0%E4%B8%80%E6%AC%A1%E6%8A%93%E5%8C%85%E7%BF%BB%E8%BD%A6%E7%8E%B0%E5%9C%BA/&title=《记一次抓包翻车现场》 — Lawson's Blog&pic=https://happychuan-pic.oss-cn-shenzhen.aliyuncs.com/assets/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://lawsan.xyz/2020/09/29/%E8%AE%B0%E4%B8%80%E6%AC%A1%E6%8A%93%E5%8C%85%E7%BF%BB%E8%BD%A6%E7%8E%B0%E5%9C%BA/&title=《记一次抓包翻车现场》 — Lawson's Blog&source=阿穿的博客。做人最重要的是开心。" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://lawsan.xyz/2020/09/29/%E8%AE%B0%E4%B8%80%E6%AC%A1%E6%8A%93%E5%8C%85%E7%BF%BB%E8%BD%A6%E7%8E%B0%E5%9C%BA/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《记一次抓包翻车现场》 — Lawson's Blog&url=http://lawsan.xyz/2020/09/29/%E8%AE%B0%E4%B8%80%E6%AC%A1%E6%8A%93%E5%8C%85%E7%BF%BB%E8%BD%A6%E7%8E%B0%E5%9C%BA/&via=http://lawsan.xyz" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://lawsan.xyz/2020/09/29/%E8%AE%B0%E4%B8%80%E6%AC%A1%E6%8A%93%E5%8C%85%E7%BF%BB%E8%BD%A6%E7%8E%B0%E5%9C%BA/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2020/08/15/200%E5%A4%9A%E8%A1%8C%E4%BB%A3%E7%A0%81%E5%B8%A6%E4%BD%A0%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AAVue/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">200多行代码带你实现一个简单Vue</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+        var id = location.pathname
+        if (location.pathname.length > 50) {
+          id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
+        }
+        const gitalk = new Gitalk({
+          clientID: '60476e5f2147b66e183a',
+          clientSecret: '62d6d1e9df0f3f402e64a84793b11b781331015e',
+          repo: 'blog_comments',
+          owner: 'ChuanV',
+          admin: ['ChuanV'],
+          id: id,      // Ensure uniqueness and length less than 50
+          title: document.title.split('|')[0],
+          distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="https://happychuan-pic.oss-cn-shenzhen.aliyuncs.com/assets/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="https://happychuan-pic.oss-cn-shenzhen.aliyuncs.com/assets/wechat.jpg" data-alipay="https://happychuan-pic.oss-cn-shenzhen.aliyuncs.com/assets/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Lawson &copy; 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+	
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://lawsan.xyz/2020/09/29/%E8%AE%B0%E4%B8%80%E6%AC%A1%E6%8A%93%E5%8C%85%E7%BF%BB%E8%BD%A6%E7%8E%B0%E5%9C%BA/&title=《记一次抓包翻车现场》 — Lawson's Blog&pic=https://happychuan-pic.oss-cn-shenzhen.aliyuncs.com/assets/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://lawsan.xyz/2020/09/29/%E8%AE%B0%E4%B8%80%E6%AC%A1%E6%8A%93%E5%8C%85%E7%BF%BB%E8%BD%A6%E7%8E%B0%E5%9C%BA/&title=《记一次抓包翻车现场》 — Lawson's Blog&source=阿穿的博客。做人最重要的是开心。" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://lawsan.xyz/2020/09/29/%E8%AE%B0%E4%B8%80%E6%AC%A1%E6%8A%93%E5%8C%85%E7%BF%BB%E8%BD%A6%E7%8E%B0%E5%9C%BA/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《记一次抓包翻车现场》 — Lawson's Blog&url=http://lawsan.xyz/2020/09/29/%E8%AE%B0%E4%B8%80%E6%AC%A1%E6%8A%93%E5%8C%85%E7%BF%BB%E8%BD%A6%E7%8E%B0%E5%9C%BA/&via=http://lawsan.xyz" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://lawsan.xyz/2020/09/29/%E8%AE%B0%E4%B8%80%E6%AC%A1%E6%8A%93%E5%8C%85%E7%BF%BB%E8%BD%A6%E7%8E%B0%E5%9C%BA/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQ4AAAEOCAAAAABd2qZ5AAAD7UlEQVR42u3aOXIbUQwFQN3/0nbiwFWWOO8BoKWgGbFUnL/0BBCWj4/48+ufz+tfvn7279+8/v7Vjq93+eo3Zx8cOHDgwFFe9aul878k10j2yi85O9snq+HAgQMHjiOOZIM8NG6O3kbDq5PgwIEDB47v4phhXT21PyEOHDhw4PhpHHlqdFu/TAqCOHDgwIHj53DMmkPJZm1jqS1Ttk+d1Upx4MCBA8ekCrcqFP6c72+Z78CBAwcOHC8D4SYNm4WuPCjmIXyWXv55CgcOHDhwrDnygJSMvuWp1GZY4d174cCBAweOK462sZQ3h2Ytrhl9/gq/PCcOHDhw4Fhw5AMBbRkuP3o7dpCkbe0QwycZLQ4cOHDgGHFcjTUkwSxPw2bX3qyDAwcOHDiuONq0Z5aG5QW7nD4ffVs1nHDgwIEDx4Ij3yC/fFtzmwXXWfr3EGhx4MCBA8cRxz7ctuXFfFSuDd5Jk+yTWikOHDhw4FhzbIprbTsnuUyejB2PSuDAgQMHjiOOPCy1ZEmw3CAmXbWihYYDBw4cOI44ZsMBbbKUBNckcG6G8x6ewoEDBw4cRxyb5GpzsXYEYcaU74UDBw4cOPYcs+LafhguR89Lew/pWfvCcODAgQPH2zjyQuEMKE/52iJje34cOHDgwHHLsWky5cW72UjcZsRhhoUDBw4cOG5jx+baszJim8i1faLoKRw4cODAseZoA96s5Neun+x7tc7DlAcOHDhw4BhxtCW8dkztdv2rQuTDUzhw4MCBY8QxC5CzEJvT51edheToPw4cOHDgwDHieN+i7xhrS4bn8jGLOqPFgQMHDhzB7TaDAnkoTdZP1sxLk/k5P9p3iAMHDhw41gNz+fjCJvTm3/MQ2w5n4MCBAweOK47ZqMGsvbQfU9gXCh9+iQMHDhw4jjhmqVc+LpCnarPXkBcTH14PDhw4cOBYcyShKG/wJBxtcXBWTDwY4MOBAwcOHCVHHjg3TakEZdYual/Ywzlx4MCBA8dR5+UqxdpX2Nrhg1nCFmW0OHDgwIFjxJGnYfmBZs2hFneTOhb/d+DAgQMHjhFHOzPWNpb2s3v5tWevAQcOHDhwXHG0wwFtYe51YL4ahmhLnA+/x4EDBw4cC45f5acYMltcdd/imq2PAwcOHDj2HLMkqh0gmCV47Y554TIpYuLAgQMHjg1HvvEsyB0U7MoQngdaHDhw4MDxPo42UM1aQW3xbn/VehQDBw4cOHB8K8csX9wX7NoiZv4vAg4cOHDg+P8c+5RsVrmcDdvVYxY4cODAgeOIo20p5cNw+fVa0HzkogjqOHDgwIFjzbEJV+1yeVurZdqkjjhw4MCB44jjNzFKr/JXIrlYAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1279039707&web_id=1279039707')
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = 'Lawson's Blog';
+            clearTimeout(titleTime);
+        } else {
+            document.title = 'Lawson's Blog';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
