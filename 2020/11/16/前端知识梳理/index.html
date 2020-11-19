@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>前端知识梳理 | Lawson&#39;s Blog | 苦中作乐，方能心安理得</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="知识梳理">
+    <meta name="description" content="CSS盒模型盒模型可以分为IE盒模型（border-box)和标准盒模型(content-box);盒模型的组成部分：内容（content）、填充（padding)、边框（border)和边距（margin);标准盒模型：属性width和height只包含内容（content），不包含padding和border；IE和模型：属性width和height包含内容（content）、填充（paddi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端知识梳理">
+<meta property="og:url" content="http://lawsan.xyz/2020/11/16/%E5%89%8D%E7%AB%AF%E7%9F%A5%E8%AF%86%E6%A2%B3%E7%90%86/index.html">
+<meta property="og:site_name" content="Lawson&#39;s Blog">
+<meta property="og:description" content="CSS盒模型盒模型可以分为IE盒模型（border-box)和标准盒模型(content-box);盒模型的组成部分：内容（content）、填充（padding)、边框（border)和边距（margin);标准盒模型：属性width和height只包含内容（content），不包含padding和border；IE和模型：属性width和height包含内容（content）、填充（paddi">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-11-16T13:31:02.000Z">
+<meta property="article:modified_time" content="2020-11-16T14:11:39.118Z">
+<meta property="article:author" content="Lawson">
+<meta property="article:tag" content="知识梳理">
+<meta name="twitter:card" content="summary">
+    
+        <link rel="alternate" type="application/atom+xml" title="Lawson&#39;s Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="https://happychuan-pic.oss-cn-shenzhen.aliyuncs.com/assets/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(https://happychuan-pic.oss-cn-shenzhen.aliyuncs.com/assets/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="https://happychuan-pic.oss-cn-shenzhen.aliyuncs.com/assets/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Lawson</h5>
+          <a href="mailto:2292100085@qq.com" title="2292100085@qq.com" class="mail">2292100085@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/ChuanV" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://blog.csdn.net/qq_42335214" target="_blank" >
+                <i class="icon icon-lg icon-send"></i>
+                CSDN
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-exclamation-circle"></i>
+                关于
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">前端知识梳理</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">前端知识梳理</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2020-11-16T13:31:02.000Z" itemprop="datePublished" class="page-time">
+  2020-11-16
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#CSS盒模型"><span class="post-toc-number">1.</span> <span class="post-toc-text">CSS盒模型</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#伪类link、hover、active、visited、focus"><span class="post-toc-number">2.</span> <span class="post-toc-text">伪类link、hover、active、visited、focus</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#css处理文本过长显示"><span class="post-toc-number">3.</span> <span class="post-toc-text">css处理文本过长显示</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#水平居中"><span class="post-toc-number">4.</span> <span class="post-toc-text">水平居中</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#垂直居中"><span class="post-toc-number">5.</span> <span class="post-toc-text">垂直居中</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-前端知识梳理"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">前端知识梳理</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2020-11-16 21:31:02" datetime="2020-11-16T13:31:02.000Z"  itemprop="datePublished">2020-11-16</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="CSS盒模型"><a href="#CSS盒模型" class="headerlink" title="CSS盒模型"></a>CSS盒模型</h2><p>盒模型可以分为IE盒模型（border-box)和标准盒模型(content-box);<br>盒模型的组成部分：内容（content）、填充（padding)、边框（border)和边距（margin);<br>标准盒模型：属性width和height只包含内容（content），不包含padding和border；<br>IE和模型：属性width和height包含内容（content）、填充（padding)和边框（border)</p>
+<h2 id="伪类link、hover、active、visited、focus"><a href="#伪类link、hover、active、visited、focus" class="headerlink" title="伪类link、hover、active、visited、focus"></a>伪类link、hover、active、visited、focus</h2><ol>
+<li><code>link</code>表示链接在正常情况下（即页面刚加载完成时）显示的颜色。</li>
+<li><code>visited</code>表示链接被点击后显示的颜色。</li>
+<li><code>hover</code>表示鼠标悬停时显示的颜色。</li>
+<li><code>focus</code>表示元素获得光标焦点时使用的颜色，主要用于文本框输入文字时使用（鼠标松开时显示的颜色）。</li>
+<li><code>active</code>表示当所指元素处于激活状态（鼠标在元素上按下还没有松开）时所显示的颜色。<br>注：伪类的顺序应为<code>link--visited--hover--focus--active</code>。<h2 id="css处理文本过长显示"><a href="#css处理文本过长显示" class="headerlink" title="css处理文本过长显示"></a>css处理文本过长显示</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.ellipsis</span>&#123;</span><br><span class="line">	display: block;//块状显示</span><br><span class="line">	overflow: hidden;//隐藏文字</span><br><span class="line">	text-overflow: ellipsis;//显示...</span><br><span class="line">	white-space: nowrap; //不换行</span><br><span class="line">	width:100px;//超过100px就截取</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="水平居中"><a href="#水平居中" class="headerlink" title="水平居中"></a>水平居中</h2></li>
+<li>行内元素<code>text-align:center</code>;</li>
+<li>定宽块元素<code>margin:auto</code>;</li>
+<li>使用CSS3中新增的transform属性<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.parent</span>&#123;</span><br><span class="line">  <span class="attribute">position</span>:relative;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.son</span>&#123;</span><br><span class="line">  <span class="attribute">position</span>:absolute;</span><br><span class="line">  <span class="attribute">left</span>:<span class="number">50%</span>;</span><br><span class="line">  <span class="attribute">transform</span>:<span class="built_in">translate</span>(-<span class="number">50%</span>,<span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>使用绝对定位方式, 以及负值的<code>margin-left</code>,margin-left是width的一半;<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.parent</span>&#123;</span><br><span class="line">  <span class="attribute">position</span>:relative;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.son</span>&#123;</span><br><span class="line">  <span class="attribute">position</span>:absolute;</span><br><span class="line">  <span class="attribute">width</span>:<span class="number">100px</span>;</span><br><span class="line">  <span class="attribute">left</span>:<span class="number">50%</span>;</span><br><span class="line">  <span class="attribute">margin-left</span>:-<span class="number">50px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>使用flex 布局<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span>&#123;</span><br><span class="line">    <span class="attribute">display</span>: flex;</span><br><span class="line">    <span class="attribute">justify-content</span>: center;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h2 id="垂直居中"><a href="#垂直居中" class="headerlink" title="垂直居中"></a>垂直居中</h2><ol>
+<li>设置 <code>line-height</code> 等于父元素高度: <code>.box{ height:20px;line-height :20px}</code></li>
+<li>使用flex 布局<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.parent</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">align-items</span>: center;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>可用 transform<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.parent</span>&#123;</span><br><span class="line">	<span class="attribute">position</span>:relative;</span><br><span class="line">.son&#123;</span><br><span class="line">    <span class="selector-tag">position</span><span class="selector-pseudo">:absolute</span>;</span><br><span class="line">    <span class="selector-tag">top</span><span class="selector-pseudo">:50</span>%;</span><br><span class="line">    <span class="selector-tag">transform</span>: <span class="selector-tag">translate</span>(0,<span class="selector-tag">-50</span>%);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>使用绝对定位方式, 以及负值的<code>margin-top</code>,margin-top是width的一半;<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.parent</span>&#123;</span><br><span class="line">  <span class="attribute">position</span>:relative;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.son</span>&#123;</span><br><span class="line">  <span class="attribute">position</span>:absolute;</span><br><span class="line">  <span class="attribute">height</span>:<span class="number">100px</span>;</span><br><span class="line">  <span class="attribute">width</span>:<span class="number">100px</span>;</span><br><span class="line">  <span class="attribute">top</span>:<span class="number">50%</span>;</span><br><span class="line">  <span class="attribute">margin-left</span>:-<span class="number">50px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>若元素是行内块级元素, 基本思想是使用<code>display: inline-block</code>, <code>vertical-align: middle</code>和一个伪元素让内容块处于容器中央.<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.parent</span><span class="selector-pseudo">::after</span>, <span class="selector-class">.son</span>&#123;</span><br><span class="line">    <span class="attribute">display</span>:inline-block;</span><br><span class="line">    <span class="attribute">vertical-align</span>:middle;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.parent</span><span class="selector-pseudo">::after</span>&#123;</span><br><span class="line">    <span class="attribute">content</span>:<span class="string">''</span>;</span><br><span class="line">    <span class="attribute">height</span>:<span class="number">100%</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2020-11-16T14:11:39.118Z" itemprop="dateUpdated">2020-11-16 22:11:39</time>
+</span><br>
+
+
+        
+        版权声明：本文为博主原创文章，遵循<a href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank" >CC 4.0 BY-SA</a>版权协议，转载请附上原文出处链接。
+        
+    </div>
+    
+    <footer>
+        <a href="http://lawsan.xyz">
+            <img src="https://happychuan-pic.oss-cn-shenzhen.aliyuncs.com/assets/avatar.jpg" alt="Lawson">
+            Lawson
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%9F%A5%E8%AF%86%E6%A2%B3%E7%90%86/" rel="tag">知识梳理</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://lawsan.xyz/2020/11/16/%E5%89%8D%E7%AB%AF%E7%9F%A5%E8%AF%86%E6%A2%B3%E7%90%86/&title=《前端知识梳理》 — Lawson's Blog&pic=https://happychuan-pic.oss-cn-shenzhen.aliyuncs.com/assets/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://lawsan.xyz/2020/11/16/%E5%89%8D%E7%AB%AF%E7%9F%A5%E8%AF%86%E6%A2%B3%E7%90%86/&title=《前端知识梳理》 — Lawson's Blog&source=阿穿的博客。做人最重要的是开心。" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://lawsan.xyz/2020/11/16/%E5%89%8D%E7%AB%AF%E7%9F%A5%E8%AF%86%E6%A2%B3%E7%90%86/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《前端知识梳理》 — Lawson's Blog&url=http://lawsan.xyz/2020/11/16/%E5%89%8D%E7%AB%AF%E7%9F%A5%E8%AF%86%E6%A2%B3%E7%90%86/&via=http://lawsan.xyz" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://lawsan.xyz/2020/11/16/%E5%89%8D%E7%AB%AF%E7%9F%A5%E8%AF%86%E6%A2%B3%E7%90%86/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2020/11/14/%E6%89%8B%E5%86%99%E6%BA%90%E7%A0%81/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">手写源码Object.create()、instanceof</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+        var id = location.pathname
+        if (location.pathname.length > 50) {
+          id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
+        }
+        const gitalk = new Gitalk({
+          clientID: '60476e5f2147b66e183a',
+          clientSecret: '62d6d1e9df0f3f402e64a84793b11b781331015e',
+          repo: 'blog_comments',
+          owner: 'ChuanV',
+          admin: ['ChuanV'],
+          id: id,      // Ensure uniqueness and length less than 50
+          title: document.title.split('|')[0],
+          distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+
+        gitalk.render('gitalk-container')
+    </script>
+</section>
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="https://happychuan-pic.oss-cn-shenzhen.aliyuncs.com/assets/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="https://happychuan-pic.oss-cn-shenzhen.aliyuncs.com/assets/wechat.jpg" data-alipay="https://happychuan-pic.oss-cn-shenzhen.aliyuncs.com/assets/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Lawson &copy; 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+	
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://lawsan.xyz/2020/11/16/%E5%89%8D%E7%AB%AF%E7%9F%A5%E8%AF%86%E6%A2%B3%E7%90%86/&title=《前端知识梳理》 — Lawson's Blog&pic=https://happychuan-pic.oss-cn-shenzhen.aliyuncs.com/assets/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://lawsan.xyz/2020/11/16/%E5%89%8D%E7%AB%AF%E7%9F%A5%E8%AF%86%E6%A2%B3%E7%90%86/&title=《前端知识梳理》 — Lawson's Blog&source=阿穿的博客。做人最重要的是开心。" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://lawsan.xyz/2020/11/16/%E5%89%8D%E7%AB%AF%E7%9F%A5%E8%AF%86%E6%A2%B3%E7%90%86/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《前端知识梳理》 — Lawson's Blog&url=http://lawsan.xyz/2020/11/16/%E5%89%8D%E7%AB%AF%E7%9F%A5%E8%AF%86%E6%A2%B3%E7%90%86/&via=http://lawsan.xyz" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://lawsan.xyz/2020/11/16/%E5%89%8D%E7%AB%AF%E7%9F%A5%E8%AF%86%E6%A2%B3%E7%90%86/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACuUlEQVR42u3aQWoDMQwF0Nz/0i10VUg8+ZLsaQpvVmFwXD8HbFXS4xE/Xz/P8+ffb57fX49ZjV+NvJ5/9ODh4eG1lr56VmOu8fl2VGeuzoCHh4d3jpdcBtWl5++TN/mlgoeHh/c5vMmYfInzcBwPDw/vv/AmYXr1CsHDw8P7BF6ylN7nSSI4T45syLXg4eHhxbxJAeyvPt9U38PDw8MrBr69A/d6fN5eUC2bvfguHh4e3gFeL81aLefPU7S9efDw8PBO8/KmgWqCoNqU0KMuv4WHh4d3mDdJhubbVA2+k6toOSceHh7eVl7eGFptmUrK/3kxrNd8gIeHh3cPr1dXqrZGJcnZedoXDw8P7wQv/yc/CWTzkHfX5m74JfHw8PCKvLzA37sGdr1pNijg4eHh3cLrJSPKaYK4dSApqi23Aw8PD+8Ab17iytMKvdnydoENVDw8PLyAlwTE85J/s3xVDKBfWPDw8PCO8XolqyQgnlwGk5IbHh4e3mle9ZieLKW3QUnR600aFw8PD+8Yrzrd1+Uzv1ryYPpN6wAeHh7eVt7kmRfJqmnc/K/j4eHhnePtCognR3yedMhnwMPDw7uHl18YvbRsIQkbk/Dw8PDu510f5eUUQCtczpO5haQzHh4e3gHe5ChPDvFJMqIX6L+5SPDw8PDGvLxwlYysJhryayn/jIeHh3c/r3mfDApa1TRuoSEMDw8P7wAvaajqhd3zcloedkehOR4eHt4mXq/Far7E6oWUJ3xHPWV4eHh4tarWIz98exdGtcSVpyGqoT8eHh7enJcnWHuXxHWxf+8a8PDw8O7kVRc6SfjmpbUNuRY8PDy8P+VtOKZb6YPqD4CHh4f3abxqgiDfsiT4TtbTDKnx8PDwirxqIqB6oFdbqarvl2/w8PDwDvD2FsB6W9BrVB3V9PDw8PA6vG/jmodc8Fvj+gAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1279039707&web_id=1279039707')
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = 'Lawson's Blog';
+            clearTimeout(titleTime);
+        } else {
+            document.title = 'Lawson's Blog';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
