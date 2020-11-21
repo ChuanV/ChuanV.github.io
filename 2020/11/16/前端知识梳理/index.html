@@ -29,7 +29,7 @@
 <meta property="og:description" content="CSS盒模型盒模型可以分为IE盒模型（border-box)和标准盒模型(content-box);盒模型的组成部分：内容（content）、填充（padding)、边框（border)和边距（margin);标准盒模型：属性width和height只包含内容（content），不包含padding和border；IE和模型：属性width和height包含内容（content）、填充（paddi">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-11-16T13:31:02.000Z">
-<meta property="article:modified_time" content="2020-11-21T07:41:21.339Z">
+<meta property="article:modified_time" content="2020-11-21T15:31:52.259Z">
 <meta property="article:author" content="Lawson">
 <meta property="article:tag" content="知识梳理">
 <meta name="twitter:card" content="summary">
@@ -165,7 +165,7 @@
     <aside class="post-widget">
         <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
             <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#CSS盒模型"><span class="post-toc-number">1.</span> <span class="post-toc-text">CSS盒模型</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#伪类link、hover、active、visited、focus"><span class="post-toc-number">2.</span> <span class="post-toc-text">伪类link、hover、active、visited、focus</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#css处理文本过长显示"><span class="post-toc-number">3.</span> <span class="post-toc-text">css处理文本过长显示</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#水平居中"><span class="post-toc-number">4.</span> <span class="post-toc-text">水平居中</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#垂直居中"><span class="post-toc-number">5.</span> <span class="post-toc-text">垂直居中</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#https工作原理"><span class="post-toc-number">6.</span> <span class="post-toc-text">https工作原理</span></a></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#CSS盒模型"><span class="post-toc-number">1.</span> <span class="post-toc-text">CSS盒模型</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#伪类link、hover、active、visited、focus"><span class="post-toc-number">2.</span> <span class="post-toc-text">伪类link、hover、active、visited、focus</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#css处理文本过长显示"><span class="post-toc-number">3.</span> <span class="post-toc-text">css处理文本过长显示</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#水平居中"><span class="post-toc-number">4.</span> <span class="post-toc-text">水平居中</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#垂直居中"><span class="post-toc-number">5.</span> <span class="post-toc-text">垂直居中</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#https工作原理"><span class="post-toc-number">6.</span> <span class="post-toc-text">https工作原理</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#white-space"><span class="post-toc-number">7.</span> <span class="post-toc-text">white-space</span></a></li></ol>
         </nav>
     </aside>
 
@@ -226,6 +226,20 @@
 </ol>
 </li>
 </ol>
+<h2 id="white-space"><a href="#white-space" class="headerlink" title="white-space"></a>white-space</h2><ol>
+<li>white-space：用来控制空白字符的显示的，同时还能控制是否自动换行；<blockquote>
+<p>normal 正常显示<br>nowrap 永不换行<br>pre preserve的缩写，空格和换行符全都被保留了下来！不过自动换行还是没了。<br>pre-wrap就是preserve+wrap，保留空格和换行符，且可以自动换行。<br>pre-line 空格被合并了，但是换行符可以发挥作用</p>
+</blockquote>
+</li>
+<li>word-break ：控制单词如何被拆分换行的<blockquote>
+<p>normal 正常显示<br>keep-all 所有“单词”一律不拆分换行,这里的“单词”包括连续的中文字符（还有日文、韩文等），或者可以理解为只有空格可以触发自动换行<br>break-all 所有单词碰到边界一律拆分换行</p>
+</blockquote>
+</li>
+<li>word-wrap 控制单词如何被拆分换行的<blockquote>
+<p>normal 正常显示<br>break-word 只有当一个单词一整行都显示不下时，才会拆分换行该单词</p>
+</blockquote>
+</li>
+</ol>
 
         </div>
 
@@ -234,7 +248,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2020-11-21T07:41:21.339Z" itemprop="dateUpdated">2020-11-21 15:41:21</time>
+    最后更新时间：<time datetime="2020-11-21T15:31:52.259Z" itemprop="dateUpdated">2020-11-21 23:31:52</time>
 </span><br>
 
 
