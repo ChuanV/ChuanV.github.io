@@ -29,7 +29,7 @@
 <meta property="og:description" content="CSS盒模型盒模型可以分为IE盒模型（border-box)和标准盒模型(content-box);盒模型的组成部分：内容（content）、填充（padding)、边框（border)和边距（margin);标准盒模型：属性width和height只包含内容（content），不包含padding和border；IE和模型：属性width和height包含内容（content）、填充（paddi">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-11-16T13:31:02.000Z">
-<meta property="article:modified_time" content="2020-11-16T14:11:39.118Z">
+<meta property="article:modified_time" content="2020-11-21T07:41:21.339Z">
 <meta property="article:author" content="Lawson">
 <meta property="article:tag" content="知识梳理">
 <meta name="twitter:card" content="summary">
@@ -165,7 +165,7 @@
     <aside class="post-widget">
         <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
             <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#CSS盒模型"><span class="post-toc-number">1.</span> <span class="post-toc-text">CSS盒模型</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#伪类link、hover、active、visited、focus"><span class="post-toc-number">2.</span> <span class="post-toc-text">伪类link、hover、active、visited、focus</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#css处理文本过长显示"><span class="post-toc-number">3.</span> <span class="post-toc-text">css处理文本过长显示</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#水平居中"><span class="post-toc-number">4.</span> <span class="post-toc-text">水平居中</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#垂直居中"><span class="post-toc-number">5.</span> <span class="post-toc-text">垂直居中</span></a></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#CSS盒模型"><span class="post-toc-number">1.</span> <span class="post-toc-text">CSS盒模型</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#伪类link、hover、active、visited、focus"><span class="post-toc-number">2.</span> <span class="post-toc-text">伪类link、hover、active、visited、focus</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#css处理文本过长显示"><span class="post-toc-number">3.</span> <span class="post-toc-text">css处理文本过长显示</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#水平居中"><span class="post-toc-number">4.</span> <span class="post-toc-text">水平居中</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#垂直居中"><span class="post-toc-number">5.</span> <span class="post-toc-text">垂直居中</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#https工作原理"><span class="post-toc-number">6.</span> <span class="post-toc-text">https工作原理</span></a></li></ol>
         </nav>
     </aside>
 
@@ -206,11 +206,25 @@
 </li>
 </ol>
 <h2 id="垂直居中"><a href="#垂直居中" class="headerlink" title="垂直居中"></a>垂直居中</h2><ol>
-<li>设置 <code>line-height</code> 等于父元素高度: <code>.box{ height:20px;line-height :20px}</code></li>
-<li>使用flex 布局<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.parent</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">align-items</span>: center;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li>可用 transform<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.parent</span>&#123;</span><br><span class="line">	<span class="attribute">position</span>:relative;</span><br><span class="line">.son&#123;</span><br><span class="line">    <span class="selector-tag">position</span><span class="selector-pseudo">:absolute</span>;</span><br><span class="line">    <span class="selector-tag">top</span><span class="selector-pseudo">:50</span>%;</span><br><span class="line">    <span class="selector-tag">transform</span>: <span class="selector-tag">translate</span>(0,<span class="selector-tag">-50</span>%);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li>使用绝对定位方式, 以及负值的<code>margin-top</code>,margin-top是width的一半;<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.parent</span>&#123;</span><br><span class="line">  <span class="attribute">position</span>:relative;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.son</span>&#123;</span><br><span class="line">  <span class="attribute">position</span>:absolute;</span><br><span class="line">  <span class="attribute">height</span>:<span class="number">100px</span>;</span><br><span class="line">  <span class="attribute">width</span>:<span class="number">100px</span>;</span><br><span class="line">  <span class="attribute">top</span>:<span class="number">50%</span>;</span><br><span class="line">  <span class="attribute">margin-left</span>:-<span class="number">50px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li>若元素是行内块级元素, 基本思想是使用<code>display: inline-block</code>, <code>vertical-align: middle</code>和一个伪元素让内容块处于容器中央.<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.parent</span><span class="selector-pseudo">::after</span>, <span class="selector-class">.son</span>&#123;</span><br><span class="line">    <span class="attribute">display</span>:inline-block;</span><br><span class="line">    <span class="attribute">vertical-align</span>:middle;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.parent</span><span class="selector-pseudo">::after</span>&#123;</span><br><span class="line">    <span class="attribute">content</span>:<span class="string">''</span>;</span><br><span class="line">    <span class="attribute">height</span>:<span class="number">100%</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>设置 <code>line-height</code> 等于父元素高度: <code>.box{ height:20px;line-height :20px}</code></p>
+</li>
+<li><p>使用flex 布局</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.parent</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">align-items</span>: center;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>可用 transform</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.parent</span>&#123;</span><br><span class="line">	<span class="attribute">position</span>:relative;</span><br><span class="line">.son&#123;</span><br><span class="line">    <span class="selector-tag">position</span><span class="selector-pseudo">:absolute</span>;</span><br><span class="line">    <span class="selector-tag">top</span><span class="selector-pseudo">:50</span>%;</span><br><span class="line">    <span class="selector-tag">transform</span>: <span class="selector-tag">translate</span>(0,<span class="selector-tag">-50</span>%);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>使用绝对定位方式, 以及负值的<code>margin-top</code>,margin-top是width的一半;</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.parent</span>&#123;</span><br><span class="line">  <span class="attribute">position</span>:relative;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.son</span>&#123;</span><br><span class="line">  <span class="attribute">position</span>:absolute;</span><br><span class="line">  <span class="attribute">height</span>:<span class="number">100px</span>;</span><br><span class="line">  <span class="attribute">width</span>:<span class="number">100px</span>;</span><br><span class="line">  <span class="attribute">top</span>:<span class="number">50%</span>;</span><br><span class="line">  <span class="attribute">margin-left</span>:-<span class="number">50px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>若元素是行内块级元素, 基本思想是使用<code>display: inline-block</code>, <code>vertical-align: middle</code>和一个伪元素让内容块处于容器中央.</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.parent</span><span class="selector-pseudo">::after</span>, <span class="selector-class">.son</span>&#123;</span><br><span class="line">    <span class="attribute">display</span>:inline-block;</span><br><span class="line">    <span class="attribute">vertical-align</span>:middle;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.parent</span><span class="selector-pseudo">::after</span>&#123;</span><br><span class="line">    <span class="attribute">content</span>:<span class="string">''</span>;</span><br><span class="line">    <span class="attribute">height</span>:<span class="number">100%</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="https工作原理"><a href="#https工作原理" class="headerlink" title="https工作原理"></a>https工作原理</h2><ol>
+<li>客户端发起https连接请求</li>
+<li>服务端收到请求后，返回公钥</li>
+<li>客户端收到服务端发过来的公钥后，使用公钥加密随机(对称)密钥。客户端随机生成的随机(对称)密钥。</li>
+<li>客户端向服务端发送加密过后的随机(对称)密钥，服务端收到后使用私钥解密得到随机(对称)密钥。</li>
+<li>双方都知道随机(对称)密钥后，就可以通过对称密钥加密的密文通信。</li>
+</ol>
+</li>
 </ol>
 
         </div>
@@ -220,7 +234,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2020-11-16T14:11:39.118Z" itemprop="dateUpdated">2020-11-16 22:11:39</time>
+    最后更新时间：<time datetime="2020-11-21T07:41:21.339Z" itemprop="dateUpdated">2020-11-21 15:41:21</time>
 </span><br>
 
 
@@ -301,7 +315,14 @@
     </div>
 
     
-<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2020/11/21/%E6%89%8B%E5%86%99Ajax/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">手写Ajax</h4>
+      </a>
+    </div>
   
 
   
