@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://lawsan.xyz/"/>
-  <updated>2020-11-26T08:57:20.377Z</updated>
+  <updated>2020-11-26T09:00:18.843Z</updated>
   <id>http://lawsan.xyz/</id>
   
   <author>
@@ -21,17 +21,15 @@
     <link href="http://lawsan.xyz/2020/11/25/%E4%BA%AC%E4%B8%9C%E4%B8%80%E3%80%81%E4%BA%8C%E9%9D%A2%E5%92%8C%E7%BD%91%E6%98%93%E4%B8%80%E9%9D%A2%E9%9D%A2%E7%BB%8F/"/>
     <id>http://lawsan.xyz/2020/11/25/%E4%BA%AC%E4%B8%9C%E4%B8%80%E3%80%81%E4%BA%8C%E9%9D%A2%E5%92%8C%E7%BD%91%E6%98%93%E4%B8%80%E9%9D%A2%E9%9D%A2%E7%BB%8F/</id>
     <published>2020-11-25T15:21:44.000Z</published>
-    <updated>2020-11-26T08:57:20.377Z</updated>
+    <updated>2020-11-26T09:00:18.843Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="京东一面"><a href="#京东一面" class="headerlink" title="京东一面"></a>京东一面</h2><p>大概是晚上6点左右的时候，打电话过来问是否方便面试。然后哗啦啦的介绍完。面的都是基础</p><ol><li>position有哪些值？（static、relative、absolute、fixed、继承）</li><li>css有那几种写法？（内联、style、link引入）</li><li>JavaScript基本数据类型？（number、string、boolean、null、undefined、object）</li><li>问了一个项目的自适应实现?（我采用了媒体查询。然后说了说媒体查询的具体原理）</li><li>事件冒泡？事件委托？</li><li>取消浏览器默认事件？（event.preventDefault())取消浏览器事件冒泡(event.stoppropagation())</li><li>说说原型链？有啥用？（继承？）</li><li>说说递归？<br>其他的忘记，然后说明天11:00二面</li></ol><h2 id="京东二面"><a href="#京东二面" class="headerlink" title="京东二面"></a>京东二面</h2><p>在微信上的视频面试。</p><ol><li>Vue生命周期</li><li>Vue组件通信有哪些？</li><li>Vue数据响应式原理？</li><li>Vuex的异步操作一般在哪？（Action）</li><li>Vue使用的axios，axios的请求拦截？</li><li>Vue的路由守卫？</li><li>JWT的使用？<br>其他的忘记了<br>第三天打电话过来，叫我入职。</li></ol><h2 id="网易一面"><a href="#网易一面" class="headerlink" title="网易一面"></a>网易一面</h2><ol><li>从输入url到页面显示，中间发生了啥？</li><li>Vue数据响应式原理？Vue3的？</li><li>前端性能优化？</li><li>大量数据列表加载怎么优化？</li><li>前端路由原理？有哪些？</li><li>首页加载怎么优化？</li><li>打包优化的一些配置？</li><li>其他的忘记了</li></ol>]]></content>
+    <content type="html"><![CDATA[<h2 id="京东一面（20min）"><a href="#京东一面（20min）" class="headerlink" title="京东一面（20min）"></a>京东一面（20min）</h2><p>大概是晚上6点左右的时候，打电话过来问是否方便面试。然后哗啦啦的介绍完。面的都是基础</p><ol><li>position有哪些值？（static、relative、absolute、fixed、继承）</li><li>css有那几种写法？（内联、style、link引入）</li><li>JavaScript基本数据类型？（number、string、boolean、null、undefined、object）</li><li>问了一个项目的自适应实现?（我采用了媒体查询。然后说了说媒体查询的具体原理）</li><li>事件冒泡？事件委托？</li><li>取消浏览器默认事件？（event.preventDefault())取消浏览器事件冒泡(event.stoppropagation())</li><li>说说原型链？有啥用？（继承？）</li><li>说说递归？<br>其他的忘记，然后说明天11:00二面</li></ol><h2 id="京东二面-15min"><a href="#京东二面-15min" class="headerlink" title="京东二面(15min)"></a>京东二面(15min)</h2><p>在微信上的视频面试。</p><ol><li>Vue生命周期</li><li>Vue组件通信有哪些？</li><li>Vue数据响应式原理？</li><li>Vuex的异步操作一般在哪？（Action）</li><li>Vue使用的axios，axios的请求拦截？</li><li>Vue的路由守卫？</li><li>JWT的使用？<br>其他的忘记了<br>第三天打电话过来，叫我入职。</li></ol><h2 id="网易一面-30min"><a href="#网易一面-30min" class="headerlink" title="网易一面(30min)"></a>网易一面(30min)</h2><ol><li>从输入url到页面显示，中间发生了啥？</li><li>Vue数据响应式原理？Vue3的？</li><li>前端性能优化？</li><li>大量数据列表加载怎么优化？</li><li>前端路由原理？有哪些？</li><li>首页加载怎么优化？</li><li>打包优化的一些配置？</li><li>其他的忘记了</li></ol>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;h2 id=&quot;京东一面&quot;&gt;&lt;a href=&quot;#京东一面&quot; class=&quot;headerlink&quot; title=&quot;京东一面&quot;&gt;&lt;/a&gt;京东一面&lt;/h2&gt;&lt;p&gt;大概是晚上6点左右的时候，打电话过来问是否方便面试。然后哗啦啦的介绍完。面的都是基础&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;positi
+        &lt;h2 id=&quot;京东一面（20min）&quot;&gt;&lt;a href=&quot;#京东一面（20min）&quot; class=&quot;headerlink&quot; title=&quot;京东一面（20min）&quot;&gt;&lt;/a&gt;京东一面（20min）&lt;/h2&gt;&lt;p&gt;大概是晚上6点左右的时候，打电话过来问是否方便面试。然后哗啦啦的介绍
       
     
     </summary>
